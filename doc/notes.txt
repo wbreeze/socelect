@@ -1,0 +1,30 @@
+Anyone can set-up a choice for some limited number of votes
+without an account.  More than that number requires an account
+and some small fee.
+
+The choice has a url for editing the alternatives.
+Anyone with the url can edit the choice.
+The alternatives for the choice and other parameters
+can be edited until someone has voted.  
+Once someone has voted the choice becomes frozen.
+
+The choice has a url for viewing the results.
+Anyone with the url can view the results.
+
+Parameters of a choice
+- two or more alternatives, naturally
+- a start time
+- an end time
+- a description
+- eligibility rule - who may vote
+- preference method - select n or ranking, partial or complete
+ranking
+- tally method - simple count, borda count, etc.
+- visibility rule - results visible during or only after
+
+Eligibility rules
+- anyone with the voting link, as often as they want
+- anyone with the voting link, once per email address
+- specified email addresses, once per email address
+- third party account verification, once per account
+
