@@ -32,3 +32,11 @@ namespace :deploy do
    run "skill -9 -u #{user} -c dispatch.fcgi"
   end
 end
+
+# reconfigure databases
+after "deploy:update_code", :bundle_install
+desc "install the necessary prerequisites"
+task :bundle_install, :roles => :app do
+  run "cd #{release_path} && bundle install"
+end
+
