@@ -16,11 +16,12 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
+  adapter: mysql2
   encoding: utf8
-  reconnect: false
+  reconnect: true
   database: socelect_production
   pool: 5
   username: socelect
   password: vj4jfTbY
   host: localhost
+  socket: /tmp/mysql.sock

@@ -33,6 +33,9 @@ namespace :deploy do
   end
 end
 
+# try after deploy to enable passenger
+# echo -e "PassengerEnabled On\nPassengerAppRoot #{release_path}" > #{release_path}/public/.htaccess
+
 # reconfigure databases
 # after "deploy:update_code", :bundle_install
 # desc "install the necessary prerequisites"
