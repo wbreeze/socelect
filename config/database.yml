@@ -21,7 +21,7 @@ production:
   reconnect: true
   database: socelect_production
   pool: 5
-  username: socelect
+  username: socelect_db
   password: vj4jfTbY
   host: localhost
   socket: /tmp/mysql.sock
