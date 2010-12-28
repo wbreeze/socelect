@@ -1,14 +1,14 @@
 set :user, 'socelect'
 set :domain, 'socelect.com'
 set :application, 'socelect'
-set :repository,  "#{user}@174.120.16.66:git/socelect.git"
+set :repository,  "#{user}@#{domain}:git/socelect.git"
 set :deploy_to, "/home/#{user}/#{domain}"
 
 set :scm, :git
 
-role :web, '174.120.16.66'
-role :app, '174.120.16.66'
-role :db, '174.120.16.66', :primary => true
+role :web, domain
+role :app, domain
+role :db, domain, :primary => true
 
 set :deploy_via, :remote_cache
 set :branch, 'master'
