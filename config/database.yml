@@ -23,5 +23,4 @@ production:
   pool: 5
   username: socelect_db
   password: vj4jfTbY
-  host: localhost
   socket: /tmp/mysql.sock
