@@ -1,7 +1,7 @@
 set :user, 'socelect'
 set :domain, 'socelect.com'
 set :application, 'socelect'
-set :repository,  "#{user}@#{domain}:git/socelect.git"
+set :repository,  "#{user}@#{domain}:git/#{user}.git"
 set :deploy_to, "/home/#{user}/#{domain}"
 
 set :scm, :git
@@ -35,10 +35,9 @@ task :enable_passenger, :roles => :app do
   run "echo -e \"PassengerEnabled On\\nPassengerAppRoot #{File.join(current_path,'public')}\" > #{File.join(current_path, 'public', '.htaccess')}"
 end
 
-# reconfigure databases
-# after "deploy:update_code", :bundle_install
-# desc "install the necessary prerequisites"
-# task :bundle_install, :roles => :app do
-#   run "cd #{release_path} && bundle install"
-# end
+after "deploy:update_code", :bundle_install
+desc "install the gems from Gemfile.lock"
+task :bundle_install, :roles => :app do
+  run "cd #{release_path} && bundle install --without development test"
+end
 
