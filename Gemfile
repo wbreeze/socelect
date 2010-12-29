@@ -13,7 +13,7 @@ gem 'capistrano'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-   gem 'sqlite3-ruby', :require => 'sqlite3'
+   gem 'sqlite3-ruby', "= 1.2.5", :require => 'sqlite3'
 end
 
 group :production do

@@ -38,6 +38,6 @@ end
 after "deploy:update_code", :bundle_install
 desc "install the gems from Gemfile.lock"
 task :bundle_install, :roles => :app do
-  run "cd #{release_path} && bundle install --without development test"
+  run "cd #{release_path} && bundle install --deployment"
 end
 
