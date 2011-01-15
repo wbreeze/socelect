@@ -1,14 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-  <title>Socelect</title>
+  <title>Social Choice</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+	<img src="/images/Tally_marks_Four.png" style="float:left"/>
+	<h1>Social Choice</h1>
 
-<%= yield %>
+   <div class="content">
+   <%= yield %>
+   </div>
 
 </body>
 </html>
