@@ -1,8 +1,9 @@
 set :user, 'socelect'
 set :domain, 'socelect.com'
 set :application, 'socelect'
-set :repository,  "#{user}@#{domain}:git/#{user}.git"
-set :deploy_to, "/home/#{user}/#{domain}"
+set :repository,  "#{user}@#{domain}:git/#{application}.git"
+set :deploy_to, "/home/#{user}/#{application}"
+default_run_options[:pty] = true
 
 set :scm, :git
 
@@ -32,7 +33,7 @@ end
 after "deploy:symlink", :enable_passenger
 desc "setup .htaccess for passenger"
 task :enable_passenger, :roles => :app do
-  run "echo -e \"PassengerEnabled On\\nPassengerAppRoot #{File.join(current_path,'public')}\" > #{File.join(current_path, 'public', '.htaccess')}"
+  run "echo -e \"PassengerEnabled On\\nPassengerAppRoot #{current_path}\" > #{File.join(current_path, 'public', '.htaccess')}"
 end
 
 after "deploy:update_code", :bundle_install
