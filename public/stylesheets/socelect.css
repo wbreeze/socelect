@@ -10,6 +10,17 @@ body div.content {
    clear:both
 }
 
+div#title img {
+   display:inline;
+   vertical-align:middle;
+}
+
+div#title h1 {
+   display:inline;
+   vertical-align:middle;
+   margin-left:20px;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;
