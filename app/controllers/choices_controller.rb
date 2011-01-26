@@ -37,9 +37,19 @@ class ChoicesController < ApplicationController
     @choice = Choice.find(params[:id])
   end
 
+    def set_missing_title_from_description(pchoice)
+      pchoice[:title].strip!
+      if pchoice[:title].empty?
+        md = pchoice[:description].match('[^.;!?]+\?') || 
+             pchoice[:description].match('^[^.;!]+[.;!]');
+        pchoice[:title] = md ? md.to_s.strip : pchoice[:description].slice(0,40)
+      end
+    end
+
   # POST /choices
   # POST /choices.xml
   def create
+    set_missing_title_from_description(params[:choice])
     @choice = Choice.new(params[:choice])
 
     respond_to do |format|
@@ -56,6 +66,7 @@ class ChoicesController < ApplicationController
   # PUT /choices/1
   # PUT /choices/1.xml
   def update
+    set_missing_title_from_description(params[:choice])
     @choice = Choice.find(params[:id])
 
     respond_to do |format|
