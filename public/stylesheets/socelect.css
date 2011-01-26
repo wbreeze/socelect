@@ -7,7 +7,8 @@ body, p, ol, ul, td {
 }
 
 body div.content {
-   clear:both
+   clear:both;
+   margin-left:30px;
 }
 
 div#title img {
