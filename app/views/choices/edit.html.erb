@@ -1,20 +1,20 @@
+<h1>Alternatives for choice</h1>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Editing choice</h1>
+<%= render :partial => 'choice_edit_errors' %>
 
-<p id='ctitle' class="information">
-Your choice, <span class="choiceTitleInline">
-  <%= @choice.title %>
-</span>
-<%= render (:partial => "title_d_popup_button", :object =>
-  { :title_id => :ctitle, :description_id => :cdscr }) %>
-</p>
+<%= form_for(@choice) do |f| %>
+  <%= render :partial => 'choice_title_desc', :object => f %>
+  <div id="alternatives">
+    <%= render :partial => 'choices/alternative', 
+        :collection => @choice.alternatives %>
+  </div>
+  <div class="actions">
+    <%= add_alternative_button 'Add an alternative' %>
+    <%= f.submit %>
+  </div>
+<% end %>
 
-<p id='cdscr' class="choiceDescription">
-  <%= @choice.description %>
-<%= render (:partial => "title_d_popup_button", :object =>
-  { :title_id => :ctitle, :description_id => :cdscr }) %>
-</p>
-
-<%= link_to 'Later', root_path %>
+<%= button_to 'Cancel', root_path %>
 

@@ -22,6 +22,24 @@ div#title h1 {
    margin-left:20px;
 }
 
+div.field {
+  display:inline-block;
+  vertical-align:top;
+  margin-right:20px;
+}
+
+div.field * {
+  display:block;
+}
+
+div#choice div.field:first-child input {
+  font-weight:bold;
+}
+
+div.alternative div.field:first-child input {
+  font-weight:bold;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;

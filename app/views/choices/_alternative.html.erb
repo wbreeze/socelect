@@ -1,0 +1,15 @@
+<div class="alternative">
+  <% new_or_existing = alternative.new_record? ? 'new' : 'existing' %>
+  <% prefix = "choice[#{new_or_existing}_alternative_attributes][]" %>
+  <%= fields_for prefix, alternative do |alt| %>
+    <div class="field">
+      <%= alt.label 'Alternative' %>
+      <%= alt.text_field :title %>
+      <%= button_to_function 'remove', "$(this).up('.alternative').remove()" %>
+    </div>
+    <div class="field">
+      <%= alt.label 'Additional information' %>
+      <%= alt.text_area :description, :rows => 2 %>
+    </div>
+  <% end %>
+</div>

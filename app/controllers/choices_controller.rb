@@ -25,6 +25,7 @@ class ChoicesController < ApplicationController
   # GET /choices/new.xml
   def new
     @choice = Choice.new
+    @choice.alternatives.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -54,7 +55,9 @@ class ChoicesController < ApplicationController
 
     respond_to do |format|
       if @choice.save
-        format.html { redirect_to(@choice, :notice => 'Choice was successfully created.') }
+        format.html { 
+          redirect_to(@choice, :action => :edit, :notice => 'Choice was successfully created.')
+        }
         format.xml  { render :xml => @choice, :status => :created, :location => @choice }
       else
         format.html { render :action => "new" }
@@ -66,6 +69,7 @@ class ChoicesController < ApplicationController
   # PUT /choices/1
   # PUT /choices/1.xml
   def update
+    params[:choice][:existing_alternative_attributes] ||= {}
     set_missing_title_from_description(params[:choice])
     @choice = Choice.find(params[:id])
 
