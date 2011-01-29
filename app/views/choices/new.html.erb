@@ -1,5 +1,10 @@
 <h1>Create a new choice</h1>
 
-<%= render 'form' %>
-
-<%= button_to 'Cancel', root_path %>
+<%= render :partial => 'choice_edit_errors' %>
+<%= form_for(@choice) do |f| %>
+  <%= render :partial => 'choice_title_desc', :object => f %>
+  <div class="actions">
+    <%= button_to 'Cancel', root_path %>
+    <%= f.submit %>
+  </div>
+<% end %>

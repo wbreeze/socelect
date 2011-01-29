@@ -12,9 +12,8 @@
   </div>
   <div class="actions">
     <%= add_alternative_button 'Add an alternative' %>
-    <%= f.submit %>
+    <%= button_to 'Cancel', root_path %>
+    <%= f.submit 'Save and Continue' %>
   </div>
 <% end %>
-
-<%= button_to 'Cancel', root_path %>
 

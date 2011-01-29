@@ -56,7 +56,7 @@ class ChoicesController < ApplicationController
     respond_to do |format|
       if @choice.save
         format.html { 
-          redirect_to(@choice, :action => :edit, :notice => 'Choice was successfully created.')
+          redirect_to :action=> :edit, :id => @choice.id, :notice => 'Choice created.'
         }
         format.xml  { render :xml => @choice, :status => :created, :location => @choice }
       else
