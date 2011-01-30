@@ -38,6 +38,11 @@ class ChoicesController < ApplicationController
     @choice = Choice.find(params[:id])
   end
 
+  # GET /choices/1/finish
+  def finish
+    @choice = Choice.find(params[:id])
+  end
+
     def set_missing_title_from_description(pchoice)
       pchoice[:title].strip!
       if pchoice[:title].empty?
@@ -55,9 +60,7 @@ class ChoicesController < ApplicationController
 
     respond_to do |format|
       if @choice.save
-        format.html { 
-          redirect_to :action=> :edit, :id => @choice.id, :notice => 'Choice created.'
-        }
+        format.html { redirect_to :action=> :edit, :id => @choice.id }
         format.xml  { render :xml => @choice, :status => :created, :location => @choice }
       else
         format.html { render :action => "new" }
@@ -75,12 +78,22 @@ class ChoicesController < ApplicationController
 
     respond_to do |format|
       if @choice.update_attributes(params[:choice])
-        format.html { redirect_to(@choice, :notice => 'Choice was successfully updated.') }
+        format.html { redirect_to :action => :finish, :id => @choice.id }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @choice.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  # POST /choices/1/publish
+  def publish
+    @choice = Choice.find(params[:id])
+    if @choice.update_attributes(params[:choice])
+      redirect_to :action => :show, :id => @choice.id
+    else
+      render :action => 'finish'
     end
   end
 

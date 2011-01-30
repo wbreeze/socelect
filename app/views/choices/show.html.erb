@@ -1,24 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>Your choice, <span class="choiceTitleInline">
-  <%= @choice.title %>
-</span>
-</p>
+<%= render :partial => 'display', :object => @choice %>
 
-<p>
-  <%= @choice.description %>
-</p>
+<% now = Time.now %>
+<% if now < @choice.opening %>
+  <p>This choice will open for selection in 
+    <%= distance_of_time_in_words(now, @choice.opening) %>
+  </p>
+<% else %>
+  <%= render :partial => 'selection', :object => @choice %>
+<% end %>
 
-<p>
-  <b>Opening:</b>
-  <%= @choice.opening %>
+<p>Express your preference within
+  <%= distance_of_time_in_words(now, @choice.deadline) %>,
+  after which this choice will close for selection.
 </p>
-
-<p>
-  <b>Deadline:</b>
-  <%= @choice.deadline %>
-</p>
-
 
 <%= link_to 'Edit', edit_choice_path(@choice) %> |
 <%= link_to 'Back', root_path %>

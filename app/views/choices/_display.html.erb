@@ -1,0 +1,17 @@
+<p><span class="choiceTitleInline">
+  <%= @choice.title %>
+</span>
+<span class="choiceDescriptionInline">
+  <%= @choice.description %>
+</p>
+
+<dl class="alternatives">
+  <% @choice.alternatives.each do |alt| %>
+    <dt class="alternativeTitle">
+      <%= alt.title %>
+    </dt>
+    <dd class="alternativeDescription">
+      <%= alt.description %>
+    </dd>
+  <% end %>
+</dl>

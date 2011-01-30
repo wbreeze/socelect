@@ -1,7 +1,14 @@
 Socelect::Application.routes.draw do
   resources :alternatives
 
-  resources :choices
+  resources :choices do
+    member do
+      get 'finish'
+      put 'publish'
+    end
+  end
+  #match '/choices/:id/finish' => 'choices#finish'
+  #match '/choices/:id/publish' => 'choices#publish'
  
   resource :welcome, :only => ["index"]
 

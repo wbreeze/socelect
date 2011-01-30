@@ -1,0 +1,23 @@
+<h1>Publish the Choice</h1>
+
+<p id="notice"><%= notice %></p>
+
+<%= render :partial => 'display', :object => @choice %>
+
+<%= form_for(@choice, :url => publish_choice_path ) do |f| %>
+  <div id='open-close'>
+    <div class="date_time_field">
+      <%= f.label 'Opening' %>
+      <%= f.datetime_select :opening, :default => 10.minutes.from_now %>
+    </div>
+    <div class="date_time_field">
+      <%= f.label 'Deadline' %>
+      <%= f.datetime_select :deadline, :default => 1.day.from_now %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= button_to 'Edit alternatives', :action => :edit, :id => @choice.id %>
+    <%= f.submit 'Publish' %>
+  </div>
+<% end %>
+
