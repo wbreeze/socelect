@@ -1,36 +1,23 @@
 class ChoicesController < ApplicationController
   # GET /choices
-  # GET /choices.xml
   def index
     @choices = Choice.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @choices }
-    end
   end
 
   # GET /choices/1
-  # GET /choices/1.xml
   def show
     @choice = Choice.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @choice }
-    end
+    @person = get_current_person
+    # TODO determine person eligibility for choice
+    @preference = Preference.new(:person => @person, :choice => @choice)
+    @preference.chef_parameters(request)
+    @expression = @preference.expression.build(:sequence => 1)
   end
 
   # GET /choices/new
-  # GET /choices/new.xml
   def new
     @choice = Choice.new
     @choice.alternatives.build
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @choice }
-    end
   end
 
   # GET /choices/1/edit
@@ -53,38 +40,28 @@ class ChoicesController < ApplicationController
     end
 
   # POST /choices
-  # POST /choices.xml
   def create
     set_missing_title_from_description(params[:choice])
     @choice = Choice.new(params[:choice])
 
-    respond_to do |format|
       if @choice.save
-        format.html { redirect_to :action=> :edit, :id => @choice.id }
-        format.xml  { render :xml => @choice, :status => :created, :location => @choice }
+        redirect_to :action=> :edit, :id => @choice.id 
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @choice.errors, :status => :unprocessable_entity }
+        render :action => "new" 
       end
-    end
   end
 
   # PUT /choices/1
-  # PUT /choices/1.xml
   def update
     params[:choice][:existing_alternative_attributes] ||= {}
     set_missing_title_from_description(params[:choice])
     @choice = Choice.find(params[:id])
 
-    respond_to do |format|
       if @choice.update_attributes(params[:choice])
-        format.html { redirect_to :action => :finish, :id => @choice.id }
-        format.xml  { head :ok }
+        redirect_to :action => :finish, :id => @choice.id
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @choice.errors, :status => :unprocessable_entity }
+        render :action => "edit" 
       end
-    end
   end
 
   # POST /choices/1/publish
@@ -97,15 +74,4 @@ class ChoicesController < ApplicationController
     end
   end
 
-  # DELETE /choices/1
-  # DELETE /choices/1.xml
-  def destroy
-    @choice = Choice.find(params[:id])
-    @choice.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(choices_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

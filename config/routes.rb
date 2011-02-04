@@ -7,10 +7,10 @@ Socelect::Application.routes.draw do
       put 'publish'
     end
   end
-  #match '/choices/:id/finish' => 'choices#finish'
-  #match '/choices/:id/publish' => 'choices#publish'
  
   resource :welcome, :only => ["index"]
+
+  resources :expressions
 
   root :to => "welcome#index"
 

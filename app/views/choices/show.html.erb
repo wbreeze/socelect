@@ -1,20 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<%= render :partial => 'display', :object => @choice %>
+<%= render :partial => 'title' %>
 
 <% now = Time.now %>
 <% if now < @choice.opening %>
   <p>This choice will open for selection in 
     <%= distance_of_time_in_words(now, @choice.opening) %>
   </p>
+<% elsif now < @choice.deadline %>
+  <%= render :partial => 'selection', 
+      :locals => { 
+        :choice => @choice,
+        :expression => @expression 
+      } %>
+  <p>Express your preference within the next
+    <%= distance_of_time_in_words(now, @choice.deadline) %>.
+  </p>
 <% else %>
-  <%= render :partial => 'selection', :object => @choice %>
+  <p>This choice closed for selection
+  <%= distance_of_time_in_words(now, @choice.deadline) %> ago.
+  </p>
 <% end %>
 
-<p>Express your preference within
-  <%= distance_of_time_in_words(now, @choice.deadline) %>,
-  after which this choice will close for selection.
-</p>
-
-<%= link_to 'Edit', edit_choice_path(@choice) %> |
-<%= link_to 'Back', root_path %>
+<%= button_to 'Socelect', root_path %>

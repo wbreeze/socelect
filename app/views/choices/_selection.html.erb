@@ -1,0 +1,16 @@
+<%= form_for @expression do |f| %>
+  <dl class="alternatives">
+    <% @choice.alternatives.shuffle.each do |alt| %>
+      <dt class="alternativeTitle">
+        <%= f.radio_button :alternative, alt.id %>
+        <%= alt.title %>
+      </dt>
+      <dd class="alternativeDescription">
+        <%= alt.description %>
+      </dd>
+    <% end %>
+  </dl>
+  <div class="actions">
+    <%= f.submit 'Submit preference' %>
+  </div>
+<% end %>
