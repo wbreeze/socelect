@@ -1,5 +1,4 @@
 class Preference < ActiveRecord::Base
-  belongs_to :person
   belongs_to :choice
   has_many :expression
 
@@ -9,6 +8,7 @@ class Preference < ActiveRecord::Base
   # TODO override host=, ip= to auto encrypt
   # TODO provide <=> for host, ip that encrypts, then compares?
   # TODO no lookup host, ip?
+  # TODO version crypt
   def chef_parameters(req)
     host = req.env['REMOTE_HOST'].crypt(SALT)
     ip = req.env['REMOTE_ADDR'].crypt(SALT)

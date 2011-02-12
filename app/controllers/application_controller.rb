@@ -7,9 +7,5 @@ class ApplicationController < ActionController::Base
     #TODO authenticated user from session
     #TODO use configuration for anonymous user
     anon = 'anonymous@socelect.com'
-    p = Person.find_by_email(anon)
-    if !p
-      p = Person.create(:email => anon)
-    end
   end
 end

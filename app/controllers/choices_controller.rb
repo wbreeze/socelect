@@ -73,7 +73,7 @@ class ChoicesController < ApplicationController
     @choice = Choice.find(params[:id])
     @alternative = Alternative.find(params[:alternative])
     @person = get_current_person
-    @preference = Preference.new(:person => @person, :choice => @choice)
+    @preference = Preference.new(:choice => @choice)
     @preference.chef_parameters(request)
     @expression = @preference.expression.build(:sequence => 1)
     @expression.alternative = @alternative

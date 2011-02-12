@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201172248) do
+ActiveRecord::Schema.define(:version => 20110212145915) do
 
   create_table "alternatives", :force => true do |t|
     t.string   "title",       :limit => 256, :null => false
@@ -37,15 +37,10 @@ ActiveRecord::Schema.define(:version => 20110201172248) do
     t.integer  "preference_id"
   end
 
-  create_table "people", :force => true do |t|
-    t.string "email"
-  end
-
   create_table "preferences", :force => true do |t|
     t.string  "host",      :limit => 256
     t.string  "ip",        :limit => 32
     t.string  "chef",      :limit => 256
-    t.integer "person_id"
     t.integer "choice_id"
   end
 
