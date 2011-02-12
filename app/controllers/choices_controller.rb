@@ -1,17 +1,10 @@
 class ChoicesController < ApplicationController
-  # GET /choices
-  def index
-    @choices = Choice.all
-  end
 
   # GET /choices/1
   def show
     @choice = Choice.find(params[:id])
     @person = get_current_person
     # TODO determine person eligibility for choice
-    @preference = Preference.new(:person => @person, :choice => @choice)
-    @preference.chef_parameters(request)
-    @expression = @preference.expression.build(:sequence => 1)
   end
 
   # GET /choices/new
@@ -22,6 +15,7 @@ class ChoicesController < ApplicationController
 
   # GET /choices/1/edit
   def edit
+    # TODO determine choice eligibility for edit
     @choice = Choice.find(params[:id])
   end
 
@@ -72,6 +66,32 @@ class ChoicesController < ApplicationController
     else
       render :action => 'finish'
     end
+  end
+
+  # POST /choices/:id/selection
+  def selection
+    @choice = Choice.find(params[:id])
+    @alternative = Alternative.find(params[:alternative])
+    @person = get_current_person
+    @preference = Preference.new(:person => @person, :choice => @choice)
+    @preference.chef_parameters(request)
+    @expression = @preference.expression.build(:sequence => 1)
+    @expression.alternative = @alternative
+
+    if @preference.save
+      redirect_to :action=> :confirm, :id => @preference.id 
+    else
+      render :action => 'show', :id => @expression.preference.choice
+    end
+  end
+
+  # GET /choices/:id/confirm
+  # :id is Preference id
+  def confirm
+    #TODO validate requester has access to preference
+    @preference = Preference.find(params[:id])
+    @choice = @preference.choice
+    @alternative = @preference.expression[0].alternative
   end
 
 end

@@ -4,7 +4,7 @@
 <%= form_for(@choice) do |f| %>
   <%= render :partial => 'choice_title_desc', :object => f %>
   <div class="actions">
-    <%= button_to 'Cancel', root_path %>
     <%= f.submit %>
   </div>
 <% end %>
+<%= button_to 'Cancel', root_path, :method => :get %>
