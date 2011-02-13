@@ -37,6 +37,7 @@ class ChoicesController < ApplicationController
   def create
     set_missing_title_from_description(params[:choice])
     @choice = Choice.new(params[:choice])
+    @choice.ensureTwoAlternatives
 
       if @choice.save
         redirect_to :action=> :edit, :id => @choice.id 

@@ -8,19 +8,23 @@ class Choice < ActiveRecord::Base
    MIN_LENGTH = 12
    MIN_LENGTH_WORD = 'twelve'
 
-   def valid_title_and_description_lengths
+   def valid_title_and_description_lengths(sino = false)
      title.strip!
      description.strip!
-     if title.length < MIN_LENGTH
+     checklen = false
+     if title.length < MIN_LENGTH && sino && !(/^(yes|no)$/i =~ title)
        if description.empty?
           if title.empty?
             errors[:base] << 'One field must contain some text'
           else
-            errors[:base] << "Type at least #{MIN_LENGTH_WORD} characters"
+            checklen = true;
           end
        elsif description.length < MIN_LENGTH
-          errors[:base] << "Type at least #{MIN_LENGTH_WORD} characters"
+          checklen = true;
        end
+     end
+     if checklen
+       errors[:base] << "Type at least #{MIN_LENGTH_WORD} characters"
      end
    end
 
@@ -38,6 +42,14 @@ class Choice < ActiveRecord::Base
    def new_alternative_attributes=(attrs)
      attrs.each do |alt|
        alternatives.build(alt)
+     end
+   end
+
+   def ensureTwoAlternatives
+     while alternatives.size < 2 do
+       defaultTitle = (alternatives.size == 0 ? 'First' : 'Second') +
+        ' alternative.'
+       alternatives.build(:title => defaultTitle)
      end
    end
 
