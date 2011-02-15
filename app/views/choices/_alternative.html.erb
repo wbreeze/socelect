@@ -5,7 +5,7 @@
     <div class="field">
       <%= alt.label 'Alternative' %>
       <%= alt.text_field :title %>
-      <%= button_to_function 'remove', "$(this).up('.alternative').remove()" %>
+      <%= button_to_function 'remove', checkAlternativeRemoveJSFunction %>
     </div>
     <div class="field">
       <%= alt.label 'Additional information' %>
