@@ -3,6 +3,8 @@
 <%= render :partial => 'choice_edit_errors' %>
 <%= form_for(@choice) do |f| %>
   <%= render :partial => 'choice_title_desc', :object => f %>
+  <%= show_simple_captcha :label => 'Copy the image text', :length => 6,
+    :image_style => 'distorted_black', :distortion => 'high' %>
   <div class="actions">
     <%= f.submit %>
   </div>

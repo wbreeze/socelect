@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/galetahub/simple-captcha.git
+  revision: b8493942e9a9bb58c58712fa21d41963330da6aa
+  specs:
+    simple_captcha (0.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -95,4 +101,5 @@ DEPENDENCIES
   mysql2
   rails (= 3.0.3)
   ruby-debug
+  simple_captcha!
   sqlite3-ruby (= 1.2.5)

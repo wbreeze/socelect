@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110212145915) do
+ActiveRecord::Schema.define(:version => 20110221175753) do
 
   create_table "alternatives", :force => true do |t|
     t.string   "title",       :limit => 256, :null => false
@@ -43,5 +43,14 @@ ActiveRecord::Schema.define(:version => 20110212145915) do
     t.string  "chef",      :limit => 256
     t.integer "choice_id"
   end
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
 end

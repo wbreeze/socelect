@@ -3,3 +3,6 @@
 
 en:
   hello: "Hello world"
+  simple_captcha:
+    message:
+      default: '- Accurately copy the image text.'
