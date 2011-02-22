@@ -32,12 +32,16 @@ div.field * {
   display:block;
 }
 
-div#choice div.field:first-child input {
+.choiceTitleInline,
+.alternativeTitle,
+div#choice div.field:first-child input,
+div.alternative div.field:first-child input {
   font-weight:bold;
 }
 
-div.alternative div.field:first-child input {
-  font-weight:bold;
+.choiceDescriptionInline,
+.alternativeDescription {
+  font-style:italic;
 }
 
 pre {
@@ -94,3 +98,4 @@ div.field, div.actions {
   padding: 0;
   font-weight: bold;
 }
+

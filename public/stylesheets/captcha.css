@@ -1,0 +1,24 @@
+.captcha{border: 1px solid #ccc; padding: 5px;}
+.captcha,
+.captcha div{display: table;}
+.captcha .captcha_field,
+.captcha .captcha_image{
+  border: 1px solid #ccc;
+  margin: 0px 0px 2px 0px;
+  padding: 0px;
+}
+.captcha .captcha_image img{
+  margin: 0px;
+  padding: 0px;
+  width: 110px;
+}
+.captcha .captcha_label{font-size: 12px;}
+.captcha .captcha_field input{
+  width: 100px;
+  padding-left: 10px;
+  font-size: 20pt;
+  font-variant: small-caps;
+  font-weight: bold;
+  border: none;
+  background-color: #efefef;
+}
