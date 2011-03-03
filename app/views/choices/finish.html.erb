@@ -8,11 +8,11 @@
   <div id='open-close'>
     <div class="date_time_field">
       <%= f.label 'Opening' %>
-      <%= f.datetime_select :opening, :default => 10.minutes.from_now %>
+      <%= f.jq_datetime_select :opening, :default => 10.minutes.from_now %>
     </div>
     <div class="date_time_field">
       <%= f.label 'Deadline' %>
-      <%= f.datetime_select :deadline, :default => 1.day.from_now %>
+      <%= f.jq_datetime_select :deadline, :default => 1.day.from_now %>
     </div>
   </div>
   <div class="actions">
