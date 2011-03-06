@@ -1,3 +1,5 @@
+<%= javascript_include_tag('alternatives') %>
+
 <h1>Alternatives for choice</h1>
 
 <p id="notice"><%= notice %></p>
@@ -11,7 +13,8 @@
         :collection => @choice.alternatives %>
   </div>
   <div class="actions">
-    <%= add_alternative_button 'Add an alternative' %>
+    <%= button_to_function 'Add an alternative', 
+      "$('#alternatives')[0].addAlternative(' #{ escape_javascript( render :partial => 'choices/alternative', :object => Alternative.new)}')", :id => 'addAlternative' %>
     <%= button_to 'Cancel', root_path %>
     <%= f.submit 'Save and Continue' %>
   </div>
