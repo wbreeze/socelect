@@ -1,4 +1,9 @@
-body { background-color: #fff; color: #333; }
+body { 
+  background: url("/images/Background.JPG") no-repeat scroll center top #6491ba;
+  color: black; 
+  margin:0px;
+  padding:0px;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;

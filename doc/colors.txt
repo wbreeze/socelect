@@ -1,0 +1,4 @@
+url("../Images/background.jpg") no-repeat scroll center top #0073BA
+url("_gfx/cmn/footer_wrapper_bg.gif") no-repeat scroll center top #384668
+url("images/BottomBar.JPG") no-repeat scroll center top #6491ba
+url("images/TopBar.JPG") no-repeat scroll center bottom
