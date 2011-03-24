@@ -15,13 +15,13 @@ div#title {
    background: url("/images/Checks.png") no-repeat scroll right top #5fa4cf;
    border-bottom: 4pt solid white;
    color:black;
-   margin-bottom:12px
+   margin-bottom: 12px;
 }
 
 div#title img {
    display:inline;
    vertical-align:middle;
-   margin-left: 5px;
+   margin-left: 10px;
    margin-right: 20px;
 }
 
@@ -36,6 +36,8 @@ div.content {
    padding-left: 15px;
    padding-right: 20px;
    padding-bottom:40px;
+   margin-left: 12px;
+   margin-right: 12px;
 }
 
 div.field {
