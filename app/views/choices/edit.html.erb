@@ -7,7 +7,9 @@
 <%= render :partial => 'choice_edit_errors' %>
 
 <%= form_for(@choice) do |f| %>
-  <%= render :partial => 'choice_title_desc', :object => f %>
+  <div class="choiceBox">
+    <%= render :partial => 'choice_title_desc', :object => f %>
+  </div>
   <div id="alternatives">
     <%= render :partial => 'choices/alternative', 
         :collection => @choice.alternatives %>

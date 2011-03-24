@@ -1,8 +1,9 @@
 <h1>Your selection</h1>
 
+<p>You selected:
+  <span class='alternativeTitle'><%= @alternative.title %></span>
+</p>
+
 <%= render :partial => 'display', :object => @choice %>
-<p>You selected:<span class='alternativeTitle'>
- <%= @alternative.title %>
-</span></p>
 
 <%= button_to 'Socelect', root_path, :method => :get %>

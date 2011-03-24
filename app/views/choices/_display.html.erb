@@ -1,12 +1,11 @@
 <%= render :partial => 'title' %>
-
-<dl class="alternatives">
+<div class="alternatives">
   <% @choice.alternatives.each do |alt| %>
-    <dt class="alternativeTitle">
+    <div class="alternativeTitle">
       <%= alt.title %>
-    </dt>
-    <dd class="alternativeDescription">
+    </div>
+    <div class="alternativeDescription">
       <%= alt.description %>
-    </dd>
+    </div>
   <% end %>
-</dl>
+</div>
