@@ -8,7 +8,7 @@
   <div id='open-close'>
     <div class="date_time_field">
       <%= f.label 'Opening' %>
-      <%= f.jq_datetime_select :opening, :default => 10.minutes.from_now %>
+      <%= f.jq_datetime_select :opening, :default => DateTime.current %>
     </div>
     <div class="date_time_field">
       <%= f.label 'Deadline' %>
