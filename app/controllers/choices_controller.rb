@@ -87,4 +87,12 @@ class ChoicesController < ApplicationController
     @alternative = @preference.expression[0].alternative
   end
 
+  # GET /choices/:id/result
+  def result
+    @choice = Choice.find(params[:id])
+    @alternatives = @choice.alternatives.sort {
+      |x,y| -1 * (x.expressions.count <=> y.expressions.count)
+    }
+  end
+
 end

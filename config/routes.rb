@@ -5,6 +5,7 @@ Socelect::Application.routes.draw do
       put 'publish'
       post 'selection'
       get 'confirm'
+      get 'result'
     end
   end
  

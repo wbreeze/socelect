@@ -1,0 +1,5 @@
+  <ol class="alternatives">
+    <% @alternatives.each do |alt| %>
+        <li><%= alt.title %> <%= alt.expressions.count %></li>
+    <% end %>
+  </ol>

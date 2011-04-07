@@ -1,0 +1,18 @@
+<h1>Results</h1>
+
+<%= render :partial => 'title' %>
+
+<% now = Time.now %>
+<% if now < @choice.deadline %>
+  <p>Results of this choice will become available in
+    <%= distance_of_time_in_words(now, @choice.deadline) %>
+  </p>
+<% else %>
+  <%= render :partial => 'result', 
+      :locals => { 
+        :choice => @choice,
+        :alternatives => @alternatives 
+      } %>
+<% end %>
+
+<%= button_to 'Socelect', root_path %>
