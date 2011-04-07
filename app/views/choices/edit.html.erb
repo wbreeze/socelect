@@ -17,8 +17,8 @@
   <div class="actions">
     <%= button_to_function 'Add an alternative', 
       "$('#alternatives')[0].addAlternative(' #{ escape_javascript( render :partial => 'choices/alternative', :object => Alternative.new)}')", :id => 'addAlternative' %>
-    <%= button_to 'Cancel', root_path %>
-    <%= f.submit 'Save and Continue' %>
+    <%= submit_tag 'Cancel', :name=>'cancel' %>
+    <%= f.submit 'Save and continue' %>
   </div>
 <% end %>
 

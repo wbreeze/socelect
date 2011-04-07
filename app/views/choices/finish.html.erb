@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="actions">
-    <%= button_to 'Edit alternatives', :action => :edit, :id => @choice.id %>
+    <%= submit_tag 'Edit alternatives', :name => 'edit' %>
     <%= f.submit 'Publish' %>
   </div>
 <% end %>

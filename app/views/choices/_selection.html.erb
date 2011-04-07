@@ -1,13 +1,15 @@
 <%= form_tag selection_choice_path do %>
   <dl class="alternatives">
+    <% first = true %>
     <% @choice.alternatives.shuffle.each do |alt| %>
       <dt class="alternativeTitle">
-        <%= radio_button_tag :alternative, alt.id %>
+        <%= radio_button_tag :alternative, alt.id, :checked => first %>
         <%= alt.title %>
       </dt>
       <dd class="alternativeDescription">
         <%= alt.description %>
       </dd>
+      <% first = false %>
     <% end %>
   </dl>
   <div class="actions">

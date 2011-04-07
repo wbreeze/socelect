@@ -15,7 +15,7 @@ div#title {
    background: url("/images/Checks.png") no-repeat scroll right top #5fa4cf;
    border-bottom: 4pt solid white;
    color:black;
-   margin-bottom: 12px;
+   #margin-bottom: 12px;
 }
 
 div#title img {
@@ -31,13 +31,12 @@ div#title h1 {
 }
 
 div.content {
-   display:inline-block;
    background: white;
+   padding-top: 1px;
    padding-left: 15px;
    padding-right: 20px;
    padding-bottom:40px;
-   margin-left: 12px;
-   margin-right: 12px;
+   margin-right: 80px;
 }
 
 div.field {
@@ -60,6 +59,11 @@ div.choiceBox {
 div.field:first-child input,
 div.alternative div.field:first-child input {
   font-weight:bold;
+}
+
+.alternativeTitle
+{
+  padding-top: 4pt;
 }
 
 .choiceDescription,
@@ -89,6 +93,10 @@ div.field, div.actions {
 
 div.actions {
   margin-top: 10px;
+}
+
+div.actions div {
+  display:inline;
 }
 
 #notice {

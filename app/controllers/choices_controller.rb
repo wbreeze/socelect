@@ -44,20 +44,29 @@ class ChoicesController < ApplicationController
   def update
     params[:choice][:existing_alternative_attributes] ||= {}
     @choice = Choice.find(params[:id])
-    if @choice.update_attributes(params[:choice])
-      redirect_to :action => :finish, :id => @choice.id
+    if (params.include? 'cancel')
+      @choice.delete
+      redirect_to :controller => 'welcome', :action => 'index'
     else
-      render :action => "edit" 
+      if @choice.update_attributes(params[:choice])
+        redirect_to :action => :finish, :id => @choice.id
+      else
+        render :action => "edit" 
+      end
     end
   end
 
   # POST /choices/1/publish
   def publish
     @choice = Choice.find(params[:id])
-    if @choice.update_attributes(params[:choice])
-      redirect_to :action => :show, :id => @choice.id
+    if (params.include? 'edit')
+      redirect_to :action => :edit, :id => @choice.id
     else
-      render :action => 'finish'
+      if @choice.update_attributes(params[:choice])
+        redirect_to :action => :show, :id => @choice.id
+      else
+        render :action => 'finish'
+      end
     end
   end
 
