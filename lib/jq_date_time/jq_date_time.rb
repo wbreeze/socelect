@@ -216,7 +216,7 @@ module JQDateTimeHelper
 
         field_name = @options[:field_name] || type
         suffix = POSITION[type]
-        puts "input_name_from_type has type #{type} that is a #{type.class}, suffix #{suffix}"
+        #puts "input_name_from_type has type #{type} that is a #{type.class}, suffix #{suffix}"
         if suffix
           field_name += "(#{suffix}i)"
         elsif type
