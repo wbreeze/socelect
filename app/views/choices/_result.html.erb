@@ -1,5 +1,7 @@
-  <ol class="alternatives">
-    <% @alternatives.each do |alt| %>
-        <li><%= alt.title %> <%= alt.expressions.count %></li>
-    <% end %>
-  </ol>
+  <table class="alternatives">
+    <tbody>
+      <% @alternatives.each do |alt| %>
+        <tr><td><%= alt.title %></td><td><%= alt.expressions.count %></td></tr>
+      <% end %>
+    </tbody>
+  </table>

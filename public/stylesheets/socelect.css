@@ -83,6 +83,11 @@ div#alternatives {
   margin-left: 1em;
 }
 
+table.alternatives td {
+  text-align:right;
+  padding-right:6pt;
+}
+
 a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
