@@ -6,6 +6,7 @@ Socelect::Application.routes.draw do
       post 'selection'
       get 'confirm'
       get 'result'
+      get 'wrap'
     end
   end
  

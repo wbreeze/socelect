@@ -63,7 +63,7 @@ class ChoicesController < ApplicationController
       redirect_to :action => :edit, :id => @choice.id
     else
       if @choice.update_attributes(params[:choice])
-        redirect_to :action => :show, :id => @choice.id
+        redirect_to :action => :wrap, :id => @choice.id
       else
         render :action => 'finish'
       end
@@ -102,6 +102,11 @@ class ChoicesController < ApplicationController
     @alternatives = @choice.alternatives.sort {
       |x,y| -1 * (x.expressions.count <=> y.expressions.count)
     }
+  end
+
+  # GET /choices/:id/wrap
+  def wrap
+    @choice = Choice.find(params[:id])
   end
 
 end

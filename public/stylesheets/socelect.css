@@ -50,6 +50,7 @@ div.field * {
 }
 
 div.choiceBox {
+  margin-top:1.5ex;
   padding-bottom: 6pt;
   border-bottom: 2pt solid black;
 }
@@ -137,5 +138,15 @@ div.actions div {
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+a.displayLink {
+  display:inline-block;
+  padding:4pt;
+  border:2pt solid black;
+}
+
+div.para {
+  margin-top: 1.5ex;
 }
 
