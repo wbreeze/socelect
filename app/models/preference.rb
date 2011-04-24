@@ -10,8 +10,10 @@ class Preference < ActiveRecord::Base
   # TODO no lookup host, ip?
   # TODO version crypt
   def chef_parameters(req)
-    host = req.env['REMOTE_HOST'].crypt(SALT)
-    ip = req.env['REMOTE_ADDR'].crypt(SALT)
+    host = req.env['REMOTE_HOST'] || 'unknown host';
+    host = host.crypt(SALT)
+    ip = req.env['REMOTE_ADDR'] || 'unknown ip address';
+    ip = ip.crypt(SALT)
     # TODO chef cookie
   end
 end
