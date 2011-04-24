@@ -27,16 +27,11 @@ class ChoicesController < ApplicationController
   # POST /choices
   def create
     @choice = Choice.new(params[:choice])
-    if simple_captcha_valid?
-      @choice.ensureTwoAlternatives
-      if @choice.save
-        redirect_to :action=> :edit, :id => @choice.id 
-      else
-        render :action => "new" 
-      end
+    @choice.ensureTwoAlternatives
+    if @choice.save
+      redirect_to :action=> :edit, :id => @choice.id 
     else
-      @choice.errors.add(:captcha, '- accurately copy text from the image')
-      render :action => 'new'
+      render :action => "new" 
     end
   end
 

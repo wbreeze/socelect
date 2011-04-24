@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  include SimpleCaptcha::ControllerHelpers
-
   # return the authenticated user's Person record
   # return the anonymous Person record if the user has not authenticated
   def get_current_person

@@ -2,8 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 
-gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
-
 gem 'jquery-rails'
 
 # Deploy with Capistrano
