@@ -3,7 +3,7 @@
   <% prefix = "choice[#{new_or_existing}_alternative_attributes][]" %>
   <%= fields_for prefix, alternative do |alt| %>
     <div class="field">
-      <%= alt.label 'Alternative' %>
+      <%= alt.label 'Option' %>
       <%= alt.text_field :title %>
       <%= button_to_function 'remove', '$("#alternatives")[0].checkRemoveAlternative(this)' %>
     </div>

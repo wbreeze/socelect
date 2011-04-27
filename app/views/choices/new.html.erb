@@ -1,10 +1,10 @@
-<h1>Create a new choice</h1>
+<h1>Create a new question</h1>
 
 <%= render :partial => 'choice_edit_errors' %>
 <%= form_for(@choice) do |f| %>
   <%= render :partial => 'choice_title_desc', :object => f %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Create question' %>
   </div>
 <% end %>
 <%= button_to 'Cancel', root_path, :method => :get %>

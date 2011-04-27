@@ -20,6 +20,11 @@
   <p>This choice closed for selection
   <%= distance_of_time_in_words(now, @choice.deadline) %> ago.
   </p>
+<div class="para">
+<a class="displayLink" href="<%= result_choice_path %>">Click here to
+view results.</a>
+</div>
+
 <% end %>
 
-<%= button_to 'Socelect', root_path %>
+<%= button_to 'Socelect home', root_path %>

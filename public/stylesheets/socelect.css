@@ -144,9 +144,12 @@ a.displayLink {
   display:inline-block;
   padding:4pt;
   border:2pt solid black;
+  margin-top:6pt;
+  margin-bottom:6pt;
 }
 
 div.para {
   margin-top: 1.5ex;
+  margin-bottom: 1ex;
 }
 

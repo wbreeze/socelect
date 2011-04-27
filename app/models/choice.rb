@@ -30,7 +30,7 @@ class Choice < ActiveRecord::Base
    def ensureTwoAlternatives
      while alternatives.size < 2 do
        defaultTitle = (alternatives.size == 0 ? 'First' : 'Second') +
-        ' alternative.'
+        ' option.'
        alternatives.build(:title => defaultTitle)
      end
    end

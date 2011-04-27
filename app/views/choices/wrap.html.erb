@@ -1,27 +1,28 @@
-<h1>Your Choice is Ready</h1>
-
-<div class="para">To edit your choice before anyone has expressed a preference, go
-to:</div>
-<div>
-<a class="displayLink" href="<%= edit_choice_path %>">Edit your choice,
-<%= @choice.title %></a>
-</div>
+<h1>Your Question is Ready</h1>
 
 <div class="para">The link to share for expressing preferences is:</div>
 <div>
-<a class="displayLink" href="<%= choice_path %>">Express preference
-from choice, <%= @choice.title %></a>
+<a class="displayLink" href="<%= choice_path %>">Click here to see your
+question.  Copy this link to share!</a>
 </div>
-<div>Share that link with others by post or email.  Most browsers will allow
+<div>Share the link with others by post or email.  Most browsers will allow
 you to right click on the link and copy to your clipboard.  Then you can
 paste the link to an email, blog entry, or web entry.</div>
 
 <div class="para">The link for viewing the result will be:</div>
 <div>
 <a class="displayLink" href="<%= result_choice_path %>">View result of
-choice, <%= @choice.title %></a>
+question, <%= @choice.title %></a>
+</div>
+
+<div class="para">To edit your choice before anyone has expressed a preference, go
+to:</div>
+<div>
+<a class="displayLink" href="<%= edit_choice_path %>">Click here to edit
+your question,
+<%= @choice.title %></a>
 </div>
 
 <%= render :partial => 'display', :object => @choice %>
 
-<%= button_to 'Socelect', root_path %>
+<%= button_to 'Socelect home', root_path %>
