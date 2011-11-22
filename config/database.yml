@@ -1,10 +1,6 @@
 # SQLite version 3.x
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
-#  adapter: sqlite3
-#  database: db/development.sqlite3
-#  pool: 5
-#  timeout: 5000
   adapter: mysql2
   encoding: utf8
   database: socelect_dev
@@ -30,4 +26,3 @@ production:
   pool: 5
   username: socelect_db
   password: vj4jfTbY
-  socket: /tmp/mysql.sock
