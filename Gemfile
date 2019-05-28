@@ -8,7 +8,7 @@ gem 'jquery-rails'
 gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-gem 'ruby-debug'
+# gem 'ruby-debug'
 # gem 'ruby-debug19'
 
 # Bundle gems for the local environment. Make sure to
@@ -19,5 +19,5 @@ group :development, :test do
 end
 
 group :production do
-   gem 'mysql2'
+#   gem 'mysql2'
 end
