@@ -1,0 +1,16 @@
+<h1>Your selection</h1>
+
+<p>You selected:
+  <%= render :partial => 'expression', :collection => @preference.expression %>
+</p>
+
+<div class="para">The link for viewing the result will be:</div>
+<div>
+<a class="displayLink" href="<%= result_choice_path :id => @choice.id %>">View result of
+choice, <%= @choice.title %></a>
+</div>
+<div>Bookmark the link if you like, to save it.</div>
+
+<%= render :partial => 'display', :object => @choice %>
+
+<%= button_to 'Socelect', root_path, :method => :get %>

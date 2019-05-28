@@ -1,0 +1,17 @@
+<%= form_tag selectionApproval_choice_path do %>
+  <dl class="alternatives">
+    <% @choice.alternatives.shuffle.each do |alt| %>
+      <dt class="alternativeTitle">
+        <%= check_box :alternative, alt.id %>
+        <%= alt.title %>
+      </dt>
+      <dd class="alternativeDescription">
+        <%= alt.description %>
+      </dd>
+      <% first = false %>
+    <% end %>
+  </dl>
+  <div class="actions">
+    <%= submit_tag 'Submit preference' %>
+  </div>
+<% end %>

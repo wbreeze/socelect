@@ -1,0 +1,6 @@
+Try "Add selections" for "Options for the question"
+
+Make page title change with the page.
+
+select approval check boxes work.  Make it usable based on a type in the
+choice.
