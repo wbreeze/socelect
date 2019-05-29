@@ -1,4 +1,4 @@
-class Preference < ActiveRecord::Base
+class Preference < ApplicationRecord
   belongs_to :choice
   has_many :expression
 

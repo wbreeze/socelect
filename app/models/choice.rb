@@ -1,5 +1,5 @@
 require 'validTitleDescription'
-class Choice < ActiveRecord::Base
+class Choice < ApplicationRecord
    include TitleDescriptionValidation
    before_validation :ensureTitleUsingDescription
    validate :valid_title_and_description_lengths
