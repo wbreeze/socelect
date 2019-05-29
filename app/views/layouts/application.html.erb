@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Choice</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "application.css" %>
   <%= javascript_include_tag 'jquery-1.5.2.min.js' %>
   <%= javascript_include_tag 'jquery-ui-1.8.11.custom.min.js' %>
   <%= javascript_include_tag 'rails.js' %>
@@ -13,8 +13,10 @@
 </head>
 <body>
   <div id="title">
-	  <img src="/images/ThreeFourFive4_64.png" alt="Three, four, five tally marks"/>
-	  <h1>socelect.com</h1>
+    <%= image_tag 'ThreeFourFive4_64.png',
+      alt:'Three, four, five tally marks'
+    %>
+    <h1>socelect</h1>
   </div>
   <div class="content">
     <%= yield %>
