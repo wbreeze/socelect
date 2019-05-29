@@ -26,7 +26,7 @@ class ChoicesController < ApplicationController
 
   # POST /choices
   def create
-    @choice = Choice.new(params[:choice])
+    @choice = Choice.new(choice_params)
     @choice.ensureTwoAlternatives
     if @choice.save
       redirect_to :action=> :edit, :id => @choice.id 
@@ -43,7 +43,7 @@ class ChoicesController < ApplicationController
       @choice.delete
       redirect_to :controller => 'welcome', :action => 'index'
     else
-      if @choice.update_attributes(params[:choice])
+      if @choice.update_attributes(choice_params)
         redirect_to :action => :finish, :id => @choice.id
       else
         render :action => "edit" 
@@ -57,7 +57,7 @@ class ChoicesController < ApplicationController
     if (params.include? 'edit')
       redirect_to :action => :edit, :id => @choice.id
     else
-      if @choice.update_attributes(params[:choice])
+      if @choice.update_attributes(choice_params)
         redirect_to :action => :wrap, :id => @choice.id
       else
         render :action => 'finish'
@@ -104,4 +104,11 @@ class ChoicesController < ApplicationController
     @choice = Choice.find(params[:id])
   end
 
+  def choice_params
+    params.require(:choice).permit(
+      :title, :description, alternative_attributes: [
+        :title, :description
+      ]
+    )
+  end
 end
