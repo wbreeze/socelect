@@ -2,7 +2,7 @@ Socelect::Application.routes.draw do
   resources :choices do
     member do
       get 'finish'
-      put 'publish'
+      patch 'publish'
       post 'selection'
       get 'confirm'
       get 'result'
