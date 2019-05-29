@@ -3,22 +3,24 @@
 <%= render :partial => 'title' %>
 
 <% now = Time.now %>
-<% if now < @choice.opening %>
+<% opening = @choice.opening || now %>
+<% deadline = @choice.deadline || now %>
+<% if now < opening %>
   <p>This choice will open for selection in 
-    <%= distance_of_time_in_words(now, @choice.opening) %>
+    <%= distance_of_time_in_words(now, opening) %>
   </p>
-<% elsif now < @choice.deadline %>
+<% elsif now < deadline %>
   <%= render :partial => 'selection', 
       :locals => { 
         :choice => @choice,
         :expression => @expression 
       } %>
   <p>Express your preference within the next
-    <%= distance_of_time_in_words(now, @choice.deadline) %>.
+    <%= distance_of_time_in_words(now, deadline) %>.
   </p>
 <% else %>
   <p>This choice closed for selection
-  <%= distance_of_time_in_words(now, @choice.deadline) %> ago.
+  <%= distance_of_time_in_words(now, deadline) %> ago.
   </p>
 <div class="para">
 <a class="displayLink" href="<%= result_choice_path %>">Click here to
