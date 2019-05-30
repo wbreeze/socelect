@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~>5.2.0'
+gem 'bootsnap'
 
 #gem 'jquery-rails'
 
