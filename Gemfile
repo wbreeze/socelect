@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~>5.0.0'
+gem 'rails', '~>5.1.0'
 
 #gem 'jquery-rails'
 
@@ -12,7 +12,7 @@ group :assets do
 end
 
 group :development, :test do
-   gem 'sqlite3', '~>1.3.0'
+   gem 'sqlite3'
 end
 
 group :production do
