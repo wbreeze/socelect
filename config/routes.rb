@@ -1,4 +1,4 @@
-Socelect::Application.routes.draw do
+Rails.application.routes.draw do
   resources :choices do
     member do
       get 'finish'
@@ -9,8 +9,7 @@ Socelect::Application.routes.draw do
       get 'wrap'
     end
   end
- 
+
   resource :welcome, :only => ["index"]
   root :to => "welcome#index"
-
 end
