@@ -53,4 +53,7 @@ Socelect::Application.configure do
   config.assets.debug = false
 
   config.eager_load = true
+
+  config.action_controller.per_form_csrf_tokens = true
+  config.action_controller.forgery_protection_origin_check = true
 end
