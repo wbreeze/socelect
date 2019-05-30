@@ -11,6 +11,10 @@ group :assets do
   gem 'uglifier'
 end
 
+group :development do
+  gem 'listen'
+end
+
 group :development, :test do
    gem 'sqlite3'
 end
