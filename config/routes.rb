@@ -1,3 +1,16 @@
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+Socelect::Application.routes.draw do
+  resources :choices do
+    member do
+      get 'finish'
+      patch 'publish'
+      post 'selection'
+      get 'confirm'
+      get 'result'
+      get 'wrap'
+    end
+  end
+ 
+  resource :welcome, :only => ["index"]
+  root :to => "welcome#index"
+
 end
