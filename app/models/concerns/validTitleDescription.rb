@@ -1,4 +1,10 @@
 module TitleDescriptionValidation
+  extend ActiveSupport::Concern
+
+  included do
+   before_validation :ensureTitleUsingDescription
+  end
+
   MIN_LENGTH = 6
   MIN_LENGTH_WORD = 'six'
 

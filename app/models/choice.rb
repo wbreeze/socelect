@@ -2,7 +2,6 @@ require 'validTitleDescription'
 
 class Choice < ApplicationRecord
    include TitleDescriptionValidation
-   before_validation :ensureTitleUsingDescription
    validate :valid_title_and_description_lengths
    #apply_simple_captcha
    #validate :is_captcha_valid?, :only => [:new, :edit]
