@@ -1,6 +1,6 @@
 module TitleDescriptionValidation
-  MIN_LENGTH = 2
-  MIN_LENGTH_WORD = 'two'
+  MIN_LENGTH = 6
+  MIN_LENGTH_WORD = 'six'
 
   def valid_title_and_description_allow_yes_no
     valid_title_and_description_lengths(true)
