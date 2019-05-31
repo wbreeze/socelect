@@ -1,4 +1,5 @@
 require 'validTitleDescription'
+
 class Choice < ApplicationRecord
    include TitleDescriptionValidation
    before_validation :ensureTitleUsingDescription
@@ -20,7 +21,7 @@ class Choice < ApplicationRecord
        end
      end
    end
-   
+
    def new_alternative_attributes=(attrs)
      attrs.each do |alt|
        alternatives.build(alt)
@@ -34,5 +35,4 @@ class Choice < ApplicationRecord
        alternatives.build(:title => defaultTitle)
      end
    end
-
-end 
+end
