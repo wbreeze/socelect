@@ -12,12 +12,14 @@ class ChoiceTest < ActiveSupport::TestCase
   test "validate no description or title" do
     ch = Choice.new({:title => '', :description => ''})
     ch.ensureTwoAlternatives
-    assert_equal(false, ch.save)
+    refute(ch.save)
   end
 
   test "substring description for title" do
-    ch = Choice.new({:title => '', 
-      :description => 'This is a not. This is a question?  This is not either.'})
+    ch = Choice.new({
+      title: '',
+      description: 'This is a not. This is a question?  This is not either.'
+    })
     ch.ensureTwoAlternatives
     assert(ch.save)
     assert_equal('This is a question?', ch.title)
@@ -26,7 +28,7 @@ class ChoiceTest < ActiveSupport::TestCase
   test "validate short title no description" do
     ch = Choice.new({:title => 'short', :description => ''})
     ch.ensureTwoAlternatives
-    assert_equal(false, ch.save)
+    refute(ch.save)
   end
 
   test "validate short title some description" do
@@ -39,7 +41,7 @@ class ChoiceTest < ActiveSupport::TestCase
   test "validate short title short description" do
     ch = Choice.new({:title => 'short', :description => 'desc'})
     ch.ensureTwoAlternatives
-    assert_equal(false, ch.save)
+    refute(ch.save)
   end
 
   test "validate yes and no alternatives" do
@@ -57,7 +59,7 @@ class ChoiceTest < ActiveSupport::TestCase
   test "validate title yes not sufficient" do
     ch = Choice.new({:title => 'yes', :description => ''})
     ch.ensureTwoAlternatives
-    assert_equal(false, ch.save)
+    refute(ch.save)
   end
 
 end
