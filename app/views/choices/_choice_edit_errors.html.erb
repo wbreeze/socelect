@@ -1,12 +1,11 @@
-  <% if @choice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@choice.errors.count, "error") %> 
-         prohibit you from saving these alternatives:</h2>
-      <ul>
-      <% @choice.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<% if @choice.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@choice.errors.count, "error") %> 
+       prohibit you from saving these alternatives:</h2>
+    <ul>
+    <% @choice.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

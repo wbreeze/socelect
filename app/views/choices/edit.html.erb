@@ -1,24 +1,11 @@
 <%= javascript_include_tag('alternatives') %>
 
-<h1>Options for the question</h1>
+<h1>Edit Question</h1>
 
 <p id="notice"><%= notice %></p>
-
 <%= render :partial => 'choice_edit_errors' %>
+<%= render :partial => 'form' %>
 
-<%= form_for(@choice) do |f| %>
-  <div class="choiceBox">
-    <%= render :partial => 'choice_title_desc', :object => f %>
-  </div>
-  <div id="alternatives">
-    <%= render :partial => 'choices/alternative', 
-        :collection => @choice.alternatives %>
-  </div>
-  <div class="actions">
-    <!-- button_to_function 'Add an option', 
-      "$('#alternatives')[0].addAlternative(' #{ escape_javascript( render :partial => 'choices/alternative', :object => Alternative.new)}')", :id => 'addAlternative' -->
-    <%= submit_tag 'Cancel', :name=>'cancel' %>
-    <%= f.submit 'Save and continue' %>
-  </div>
-<% end %>
-
+<div class="actions">
+  <%= link_to 'Cancel', wrap_choice_path(@choice) %>
+</div>

@@ -1,7 +1,27 @@
-<%= render :partial => 'choice_edit_errors' %>
 <%= form_for(@choice) do |f| %>
   <%= render :partial => 'choice_title_desc', :object => f %>
+
+  <h3>Alternatives</h3>
+  <div id="alternatives">
+    <%= f.fields_for :alternatives do |alt| %>
+      <%= render :partial => 'alternative', locals: { form: alt } %>
+    <% end %>
+  </div>
+  <p><!-- add_alternative_link -->'Add an alternative'</p>
+
+  <h3>Dates</h3>
+  <div id='open-close'>
+    <div class="date_time_field">
+      <%= f.label :opening %>
+      <%= f.datetime_field :opening  %>
+    </div>
+    <div class="date_time_field">
+      <%= f.label :deadline %>
+      <%= f.datetime_field :deadline %>
+    </div>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Publish' %>
   </div>
 <% end %>

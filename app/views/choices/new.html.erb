@@ -1,10 +1,12 @@
-<h1>Create a new question</h1>
+<%= javascript_include_tag('alternatives') %>
 
+<h1>Create Question</h1>
+
+<p id="notice"><%= notice %></p>
 <%= render :partial => 'choice_edit_errors' %>
-<%= form_for(@choice) do |f| %>
-  <%= render :partial => 'choice_title_desc', :object => f %>
-  <div class="actions">
-    <%= f.submit 'Create question' %>
-  </div>
-<% end %>
-<%= button_to 'Cancel', root_path, :method => :get %>
+
+<%= render :partial => 'form' %>
+
+<div class="actions">
+  <%= submit_tag 'Cancel', :name=>'cancel' %>
+</div>

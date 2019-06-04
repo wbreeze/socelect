@@ -2,10 +2,11 @@ require 'validTitleDescription'
 
 class Choice < ApplicationRecord
    include TitleDescriptionValidation
-   validate :valid_title_and_description_lengths
+   validate :valid_title_and_description_lengths, :valid_alternative_count
    #apply_simple_captcha
    #validate :is_captcha_valid?, :only => [:new, :edit]
    validates_associated :alternatives
+   after_initialize :ensure_two_alternatives, :ensure_default_dates
 
    has_many :alternatives, :dependent=>:destroy
    accepts_nested_attributes_for :alternatives, :allow_destroy => true
@@ -27,11 +28,22 @@ class Choice < ApplicationRecord
      end
    end
 
-   def ensureTwoAlternatives
+   def ensure_two_alternatives
      while alternatives.size < 2 do
-       defaultTitle = (alternatives.size == 0 ? 'First' : 'Second') +
+       default_title = (alternatives.size == 0 ? 'First' : 'Second') +
         ' option.'
-       alternatives.build(:title => defaultTitle)
+       alternatives.build(:title => default_title)
+     end
+   end
+
+   def ensure_default_dates
+     self.opening = DateTime.current
+     self.deadline = 1.day.from_now
+   end
+
+   def valid_alternative_count
+     if alternatives.size < 2
+       errors.add(:alternatives, "requires at least two alternatives")
      end
    end
 end
