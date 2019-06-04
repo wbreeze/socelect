@@ -16,6 +16,12 @@ group :development do
   gem 'listen'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+end
+
 group :development, :test do
    gem 'sqlite3'
 end
