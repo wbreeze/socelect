@@ -14,8 +14,7 @@ class ChoicesControllerTest < ActionController::TestCase
     assert_difference('Choice.count') do
       post :create, params: { choice: @choice.attributes }
     end
-
-    assert_response :redirect
+    assert_response :success
   end
 
   test "should show choice" do
@@ -33,6 +32,6 @@ class ChoicesControllerTest < ActionController::TestCase
       id: @choice.to_param,
       choice: @choice.attributes
     }
-    assert_redirected_to finish_choice_path(@choice)
+    assert_response :success
   end
 end
