@@ -150,6 +150,7 @@ GEM
       net-ssh (>= 2.8.0)
     thor (0.20.3)
     thread_safe (0.3.6)
+    timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
@@ -172,6 +173,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   selenium-webdriver
   sqlite3
+  timecop
   uglifier
 
 BUNDLED WITH
