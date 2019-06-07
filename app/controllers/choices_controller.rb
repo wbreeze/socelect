@@ -24,7 +24,7 @@ class ChoicesController < ApplicationController
     if @choice.save
       render :wrap
     else
-      render :edit
+      render :new
     end
   end
 
