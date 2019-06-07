@@ -274,14 +274,16 @@
      * @return {undefined}
      */
     jQuery.ptTimeSelect.setTime = function() {
-        var tSel = jQuery('#ptTimeSelectUserSelHr').text()
-                    + ":"
-                    + jQuery('#ptTimeSelectUserSelMin').text()
-                    + " "
-                    + jQuery('#ptTimeSelectUserSelAmPm').text();
+        var date = new Date();
+        var hours = jQuery('#ptTimeSelectUserSelHr').text();
+        var ampm = jQuery('#ptTimeSelectUserSelAmPm').text();
+        hour = Number.parseInt(hours);
+        if (ampm[0] == 'P') hour += 12;
+        date.setHours(hour);
+        date.setMinutes(jQuery('#ptTimeSelectUserSelMin').text());
+        var tSel = date.toTimeString();
         jQuery(".isPtTimeSelectActive").val(tSel);
         this.closeCntr();
-
     };// END setTime() function
 
     /**
@@ -459,11 +461,11 @@
             //Wrap the input field in a <div> element with
             // a unique id for later referencing.
             if (thisOpt.popupImage || !thisOpt.onFocusDisplay) {
-                var img = jQuery('<span>&nbsp;</span><a href="javascript:" onclick="'
-                        'jQuery.ptTimeSelect.openCntr(jQuery(this).data(\'ptTimeSelectEle\'));">'
-                        thisOpt.popupImage + '</a>'
-                    )
-                    .data("ptTimeSelectEle", e);
+                var img = jQuery(
+                  '<span>&nbsp;</span><a href="javascript:" onclick="' +
+                  'jQuery.ptTimeSelect.openCntr(jQuery(this).data(\'ptTimeSelectEle\'));">' +
+                  thisOpt.popupImage + '</a>'
+                ).data("ptTimeSelectEle", e);
                 e.after(img);
             }
             if (thisOpt.onFocusDisplay){

@@ -48,15 +48,15 @@ class Choice < ApplicationRecord
      self.deadline_time = self.deadline.to_time
    end
 
+   def resolve_date_and_time(date_str, time_str)
+     dd = date_str.to_datetime
+     dt = time_str.to_datetime.utc
+     DateTime.new(dd.year, dd.month, dd.day, dt.hour, dt.min, dt.sec)
+   end
+
    def resolve_dates
-     dt = opening_time.to_datetime
-     self.opening = DateTime.new(
-       opening_date.year, opening_date.month, opening_date.day,
-       dt.hour, dt.min, dt.sec, dt.utc_offset)
-     dt = deadline_time.to_datetime
-     self.deadline = DateTime.new(
-       deadline_date.year, deadline_date.month, deadline_date.day,
-       dt.hour, dt.min, dt.sec, dt.utc_offset)
+     self.opening = resolve_date_and_time(opening_date, opening_time)
+     self.deadline = resolve_date_and_time(deadline_date, deadline_time)
    end
 
    def valid_alternative_count

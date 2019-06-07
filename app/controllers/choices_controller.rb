@@ -85,9 +85,10 @@ class ChoicesController < ApplicationController
 
   def choice_params
     params.require(:choice).permit(
-      :title, :description, alternatives_attributes: [
-        :title, :description
-      ]
+      :title, :description,
+      :opening_date, :opening_time,
+      :deadline_date, :deadline_time,
+      alternatives_attributes: [ :title, :description ]
     )
   end
 end
