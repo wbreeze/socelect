@@ -1,4 +1,6 @@
 /*
 *= require_self
-*= require_tree .
+*= require scaffold
+*= require socelect
+*= require jquery.ptTimeSelect
 */
