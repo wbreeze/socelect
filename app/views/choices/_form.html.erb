@@ -11,14 +11,10 @@
 
   <h3>Dates</h3>
   <div id='open-close'>
-    <div class="date_time_field">
-      <%= f.label :opening %>
-      <%= f.datetime_field :opening  %>
-    </div>
-    <div class="date_time_field">
-      <%= f.label :deadline %>
-      <%= f.datetime_field :deadline %>
-    </div>
+    <%= render partial: 'date_time_select',
+      locals: { form: f, field: 'opening' } %>
+    <%= render partial: 'date_time_select',
+      locals: { form: f, field: 'deadline' } %>
   </div>
 
   <div class="actions">
