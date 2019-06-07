@@ -99,4 +99,12 @@ class ChoiceTest < ActiveSupport::TestCase
     assert_equal(te.month, ch.deadline.month)
     assert_equal(te.year, ch.deadline.year)
   end
+
+  test 'adds alternatives only if fewer than needed' do
+    ch = Choice.new({title: 'Choice title'})
+    assert_equal(2, ch.alternatives.size)
+    assert(ch.save)
+    ch = Choice.find(ch.id)
+    assert_equal(2, ch.alternatives.size)
+  end
 end
