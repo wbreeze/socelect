@@ -9,6 +9,7 @@ $(document).ready(function() {
   $('input.time_entry').ptTimeSelect();
   $('input.date_entry').datepicker({
     changeMonth: true,
-    changeYear: true
+    changeYear: true,
+    dateFormat: 'yy-mm-dd'
   });
 });
