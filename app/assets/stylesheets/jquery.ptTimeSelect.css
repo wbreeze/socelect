@@ -23,8 +23,6 @@
  *     - $Revision: 1.1 $
  */
 #ptTimeSelectCntr {
-  background-color: white;
-  border: 1pt solid black;
   width: 250px;
   font-size: .9em;
   position: absolute;
