@@ -23,6 +23,8 @@
  * 		- $Revision: 1.1 $
  */
 #ptTimeSelectCntr {
+  background-color: white;
+  border: 1pt solid black;
 	width: 250px; 
 	font-size: .9em;
 	position: absolute;
@@ -33,7 +35,11 @@
 	padding: .2em;
 }
 #ptTimeSelectCntr .ui-widget-header {
+  background-color: #5fa4cf;
 	padding: .2em;
+}
+#ptTimeSelectCntr #ptTimeSelectSetButton {
+  background-color: #5fa4cf;
 }
 #ptTimeSelectCntr #ptTimeSelectUserTime {
 	font-size: larger;
