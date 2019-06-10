@@ -10,6 +10,7 @@ class ChoicesController < ApplicationController
   # GET /choices/new
   def new
     @choice = Choice.new
+    @choice.ensure_two_alternatives
   end
 
   # GET /choices/1/edit
@@ -30,17 +31,11 @@ class ChoicesController < ApplicationController
 
   # PUT /choices/1
   def update
-    params[:choice][:existing_alternative_attributes] ||= {}
     @choice = Choice.find(params[:id])
-    if (params.include? 'cancel')
-      @choice.delete
-      redirect_to :controller => 'welcome', :action => 'index'
+    if @choice.update_attributes(choice_params)
+      render :wrap
     else
-      if @choice.update_attributes(choice_params)
-        render :wrap
-      else
-        render :edit
-      end
+      render :edit
     end
   end
 

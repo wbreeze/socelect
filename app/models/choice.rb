@@ -8,12 +8,12 @@ class Choice < ApplicationRecord
    #apply_simple_captcha
    #validate :is_captcha_valid?, :only => [:new, :edit]
    validates_associated :alternatives
-   after_initialize :ensure_two_alternatives, :ensure_default_dates
+   after_initialize :ensure_default_dates
    before_validation :resolve_dates
 
    has_many :alternatives, :dependent=>:destroy
-   accepts_nested_attributes_for :alternatives, :allow_destroy => true,
-     reject_if: lambda { |attrs| attrs['title'].blank? }
+   accepts_nested_attributes_for :alternatives, allow_destroy: true,
+     :reject_if => :all_blank
 
    def ensure_two_alternatives
      while alternatives.size < 2 do
