@@ -13,9 +13,7 @@ class Choice < ApplicationRecord
 
    has_many :alternatives, :dependent=>:destroy
    accepts_nested_attributes_for :alternatives, allow_destroy: true,
-     :reject_if => proc { |alt|
-       !alt[:id] && (!(alt[:title] || alt[:description]) || alt[:_destroy])
-     }
+     :reject_if => :all_blank
 
    def ensure_two_alternatives
      while alternatives.size < 2 do
