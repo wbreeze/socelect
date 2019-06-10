@@ -12,30 +12,12 @@ class Choice < ApplicationRecord
    before_validation :resolve_dates
 
    has_many :alternatives, :dependent=>:destroy
-   accepts_nested_attributes_for :alternatives, :allow_destroy => true
-
-   def existing_alternative_attributes=(attrs)
-     alternatives.reject(&:new_record?).each do |alt|
-       attributes = attrs[alt.id.to_s]
-       if attributes
-         alt.attributes = attributes
-       else
-         alternatives.delete(alt)
-       end
-     end
-   end
-
-   def new_alternative_attributes=(attrs)
-     attrs.each do |alt|
-       alternatives.build(alt)
-     end
-   end
+   accepts_nested_attributes_for :alternatives, :allow_destroy => true,
+     reject_if: lambda { |attrs| attrs['title'].blank? }
 
    def ensure_two_alternatives
      while alternatives.size < 2 do
-       default_title = (alternatives.size == 0 ? 'First' : 'Second') +
-        ' option.'
-       alternatives.build(:title => default_title)
+       alternatives.build
      end
    end
 
