@@ -7,7 +7,9 @@
       <%= render :partial => 'alternative', locals: { form: alt } %>
     <% end %>
   </div>
-  <p><!-- add_alternative_link -->'Add an alternative'</p>
+  <p><%= link_to('Add an alternative', '#', {
+    data: { add_alternative: 'yes' }
+  }) %></p>
 
   <h3>Dates</h3>
   <div id='open-close'>

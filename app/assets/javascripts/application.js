@@ -4,6 +4,7 @@
 //= require jquery-ui-1.8.11.custom.min.js
 //= require rails.js
 //= require jquery.ptTimeSelect.js
+//= require alternatives.js
 //= require_self
 $(document).ready(function() {
   $('input.time_entry').ptTimeSelect();

@@ -6,7 +6,7 @@ $(function()
     addAlternative: function(el)
     {
       altsContainer.append(el);
-      altsContainer.find('input[type="button"]').show();
+      altsContainer.find('a[data-remove-alternative]').show();
       altsContainer.find('.alternative:last input[type="text"]:first').focus();
       altsContainer[0].renumberTabNavigation();
     },
@@ -21,7 +21,7 @@ $(function()
       } 
       if (3 === ctAlt)
       { 
-        sibAlts.find('input[type="button"]').hide();
+        sibAlts.find('a[data-remove-alternative]').hide();
       }
     },
     initializeRemoveButtons: function() {
@@ -29,7 +29,7 @@ $(function()
       var ctAlt = alts.length;
       if (2 === ctAlt)
       {
-         alts.find('input[type="button"]').hide();
+         alts.find('a[data-remove-alternative]').hide();
       }
     },
     renumberTabNavigation: function()
@@ -54,6 +54,12 @@ $(function()
       $form.find('#addAlternative').attr('tabIndex', addAltTi).attr('tabIndex', addAltTi);
     }
   });
+  altsContainer[0].find('a[data-remove-alternative]').on 'click',
+    function(e) {
+      $(this).prev('input[type=hidden]').val('1');
+      $(this).closest('.alternative').hide();
+      e.preventDefault();
+    }
   altsContainer[0].initializeRemoveButtons();
   altsContainer[0].renumberTabNavigation();
   altsContainer.find('.alternative:first input[type="text"]:first').focus();

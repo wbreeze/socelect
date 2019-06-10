@@ -7,4 +7,8 @@
     <%= form.label 'Additional information' %>
     <%= form.text_area :description, :rows => 2 %>
   </div>
+  <%= form.hidden_field :_destroy %>
+  <p><%= link_to('Remove', '#', {
+    data: { remove_alternative: 'yes' }
+  }) %></p>
 </div>
