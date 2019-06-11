@@ -1,5 +1,10 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
+Dir.glob(
+  File.join(File.expand_path('../helpers', __FILE__), '*_helper.rb')
+).each do |helper|
+  require helper
+end
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
@@ -9,5 +14,15 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def assert_invalid_record(record, reason)
+    refute(record.save)
+    assert_raises(ActiveRecord::RecordInvalid) do
+      begin
+        record.save!
+      rescue ActiveRecord::RecordInvalid => e
+        assert_match(reason, e.message)
+        raise
+      end
+    end
+  end
 end

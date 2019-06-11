@@ -1,35 +1,6 @@
 require 'test_helper'
 
 class ChoiceTest < ActiveSupport::TestCase
-  def assert_invalid_record(record, reason)
-    refute(record.save)
-    assert_raises(ActiveRecord::RecordInvalid) do
-      begin
-        record.save!
-      rescue ActiveRecord::RecordInvalid => e
-        assert_match(reason, e.message)
-        raise
-      end
-    end
-  end
-
-  def create_choice(title = 'this is a choice?')
-    Choice.new(title: title)
-  end
-
-  def build_alternatives(choice)
-    titles = ['this is an alternative', 'this is another']
-    titles.each do |title|
-      choice.alternatives.build(title: title)
-    end
-    choice
-  end
-
-  def create_full_choice(attribs = { title: 'this is a choice?' })
-    ch = Choice.new(attribs)
-    build_alternatives(ch)
-  end
-
   test "validate description no title" do
     desc = 'the description field'
     ch = create_full_choice({:title => '', :description => desc})
