@@ -1,20 +1,58 @@
 require 'test_helper'
 
 class ChoiceTest < ActiveSupport::TestCase
+  def assert_invalid_record(record, reason)
+    refute(record.save)
+    assert_raises(ActiveRecord::RecordInvalid) do
+      begin
+        record.save!
+      rescue ActiveRecord::RecordInvalid => e
+        assert_match(reason, e.message)
+        raise
+      end
+    end
+  end
+
+  def create_choice(title = 'this is a choice?')
+    Choice.new(title: title)
+  end
+
+  def build_alternatives(choice)
+    titles = ['this is an alternative', 'this is another']
+    titles.each do |title|
+      choice.alternatives.build(title: title)
+    end
+    choice
+  end
+
+  def create_full_choice(attribs = { title: 'this is a choice?' })
+    ch = Choice.new(attribs)
+    build_alternatives(ch)
+  end
+
   test "validate description no title" do
     desc = 'the description field'
-    ch = Choice.new({:title => '', :description => desc})
+    ch = create_full_choice({:title => '', :description => desc})
     assert(ch.save)
     assert_equal(desc, ch.title)
   end
 
   test "validate no description or title" do
-    ch = Choice.new({:title => '', :description => ''})
-    refute(ch.save)
+    ch = create_full_choice({:title => '', :description => ''})
+    assert_invalid_record(ch, 'must contain some text')
+  end
+
+  test "validate two alternatives" do
+    ch = create_choice
+    assert_invalid_record(ch, 'two alternatives')
+    ch.alternatives.build(title: 'this is an answer')
+    assert_invalid_record(ch, 'two alternatives')
+    ch.alternatives.build(title: 'this is also an answer')
+    assert(ch.save)
   end
 
   test "substring description for title" do
-    ch = Choice.new({
+    ch = create_full_choice({
       title: '',
       description: 'This is a not. This is a question?  This is not either.'
     })
@@ -23,41 +61,44 @@ class ChoiceTest < ActiveSupport::TestCase
   end
 
   test "validate short title no description" do
-    ch = Choice.new({:title => 'short', :description => ''})
-    refute(ch.save)
+    ch = create_full_choice({:title => 'short', :description => ''})
+    assert_invalid_record(ch, /Provide at least .+ for title or description/)
   end
 
   test "validate short title some description" do
-    ch = Choice.new({:title => 'short', :description => 'some description'})
+    ch = create_full_choice({
+      title: 'short', description: 'some description'
+    })
     assert(ch.save)
     assert_equal('short', ch.title);
   end
 
   test "validate short title short description" do
-    ch = Choice.new({:title => 'short', :description => 'desc'})
-    refute(ch.save)
+    ch = create_full_choice({:title => 'short', :description => 'desc'})
+    assert_invalid_record(ch, /Provide at least .+ for title or description/)
   end
 
   test "validate yes and no alternatives" do
     ch = Choice.new({:title => 'Do you like lobster?', :description => ''})
-    alts = ch.alternatives
-    alts[0].title = 'yes'
-    alts[1].title = 'No'
+    yes = 'yes'
+    no = 'No'
+    ch.alternatives.build(title: yes)
+    ch.alternatives.build(title: no)
     assert(ch.save)
     alts = ch.alternatives
-    assert_equal('yes', alts[0].title)
-    assert_equal('No', alts[1].title)
+    assert_equal(yes, alts[0].title)
+    assert_equal(no, alts[1].title)
   end
 
   test "validate title yes not sufficient" do
-    ch = Choice.new({:title => 'yes', :description => ''})
-    refute(ch.save)
+    ch = create_full_choice({:title => 'yes', :description => ''})
+    assert_invalid_record(ch, /Provide at least .+ for title or description/)
   end
 
   test 'create has default start and end dates' do
     now = DateTime.current
     Timecop.freeze now do
-      ch = Choice.new({title: 'Choice title'})
+      ch = create_full_choice
       dt_format = '%Y:%m:%d:%H:%M:%S:%z'
       d_format = '%Y:%m:%d'
       t_format = '%H:%M:%S:%z'
@@ -80,7 +121,7 @@ class ChoiceTest < ActiveSupport::TestCase
   test 'save writes opening and deadline date and time' do
     ts = DateTime.current + 1.day
     te = DateTime.current + 2.days
-    ch = Choice.new({title: 'Choice title'})
+    ch = create_full_choice
     ch.opening_date = Date.new(ts.year, ts.month, ts.day)
     ch.opening_time = DateTime.new(ts.year, ts.month, ts.day, ts.hour, ts.minute)
     ch.deadline_date = Date.new(te.year, te.month, te.day)
@@ -100,11 +141,9 @@ class ChoiceTest < ActiveSupport::TestCase
     assert_equal(te.year, ch.deadline.year)
   end
 
-  test 'adds alternatives only if fewer than needed' do
+  test 'create does not add alternatives' do
     ch = Choice.new({title: 'Choice title'})
-    assert_equal(2, ch.alternatives.size)
-    assert(ch.save)
-    ch = Choice.find(ch.id)
-    assert_equal(2, ch.alternatives.size)
+    assert_equal(0, ch.alternatives.size)
+    assert_invalid_record(ch, 'two alternatives')
   end
 end
