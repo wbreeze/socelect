@@ -1,13 +1,11 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 one:
-  title: MyString
-  description: MyText
-  opening: 2010-12-26
-  deadline: 2010-12-26
+  title: Choice one title
+  description: Choice one description
+  opening: <%= DateTime.current %>
+  deadline: <%= DateTime.current + 1.day + 1.hour %>
 
 two:
-  title: MyString
-  description: MyText
-  opening: 2010-12-26
-  deadline: 2010-12-26
+  title: Choice two title
+  description: Choice two description
+  opening: <%= DateTime.current - 1.day - 1.hour %>
+  deadline: <%= DateTime.current + 1.hour %>

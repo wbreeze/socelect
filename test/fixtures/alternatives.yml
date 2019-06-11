@@ -1,11 +1,9 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 one:
-  title: MyString
-  description: MyText
-  choice_id: 1
+  title: Alternative one title
+  description: Alternative one description
+  choice_id: :one
 
 two:
-  title: MyString
-  description: MyText
-  choice_id: 1
+  title: Alternative two title
+  description: Alternative two description
+  choice_id: :one
