@@ -5,14 +5,34 @@ class ChoicesControllerTest < ActionController::TestCase
     @choice = choices(:one)
   end
 
+  def choice_params(choice)
+    {
+      choice: {
+        title: choice.title,
+        description: choice.description,
+        opening_date: choice.opening.to_date,
+        opening_time: choice.opening.to_time,
+        deadline_date: choice.deadline.to_date,
+        deadline_time: choice.deadline.to_time,
+        alternatives_attributes: choice.alternatives.collect do |alt|
+          {
+            title: alt.title,
+            description: alt.description
+          }
+        end
+      }
+    }
+  end
+
   test "should get new" do
     get :new
     assert_response :success
   end
 
   test "should create choice" do
+    more_choice = create_full_choice
     assert_difference('Choice.count') do
-      post :create, params: { choice: @choice.attributes }
+      post :create, params: choice_params(more_choice)
     end
     assert_response :success
   end
