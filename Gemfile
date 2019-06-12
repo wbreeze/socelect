@@ -9,7 +9,13 @@ end
 
 group :development do
   gem 'listen'
-  gem 'capistrano' # for deployment
+
+  # for deployment
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
 end
 
 group :test do
