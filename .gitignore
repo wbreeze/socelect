@@ -3,3 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 vendor/**/*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
