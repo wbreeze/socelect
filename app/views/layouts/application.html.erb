@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Choice</title>
+  <title><%= content_for(:page_title) || 'Choice' %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag "application.css" %>
   <%= javascript_include_tag 'application.js' %>
@@ -12,7 +12,7 @@
     <%= image_tag 'ThreeFourFive4_64.png',
       alt:'Three, four, five tally marks'
     %>
-    <h1>socelect</h1>
+    <h1><%= site_name %></h1>
   </div>
   <div class="content">
     <%= yield %>
