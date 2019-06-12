@@ -12,6 +12,19 @@ module Socelect
     config.load_defaults 5.1
     config.active_record.sqlite3.represent_boolean_as_integer = true
 
+    # content security policy; preferred over the DSL
+    config.action_dispatch.default_headers['X-Content-Security_Policy'] =
+      <<~POLICY.gsub("\n", "\s")
+      default-src 'none';
+      image-src 'self';
+      style-src-elem 'self';
+      script-src-elem 'self';
+      report-to csp-reporting-endpoint
+      POLICY
+
+    config.action_dispatch.default_headers['Strict-Transport-Security'] =
+      "max-age=3600"
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
