@@ -3,17 +3,13 @@ source 'https://rubygems.org'
 gem 'rails', '~>5.2.0'
 gem 'bootsnap'
 
-#gem 'jquery-rails'
-
-# Deploy with Capistrano
-gem 'capistrano'
-
 group :assets do
   gem 'uglifier'
 end
 
 group :development do
   gem 'listen'
+  gem 'capistrano' # for deployment
 end
 
 group :test do
@@ -24,9 +20,9 @@ group :test do
 end
 
 group :development, :test do
-   gem 'sqlite3'
+  gem 'sqlite3'
 end
 
 group :production do
-#   gem 'mysql2'
+  #gem 'mysql2'
 end
