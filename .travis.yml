@@ -3,3 +3,11 @@ bundler_args: --without production --without development
 before_install:
   - gem update --system
   - gem install bundler
+before_script:
+  - gem install brakeman
+  - gem install bundle-audit
+  - bundle-audit update
+script:
+  - rails test
+  - brakeman -z
+  - bundle-audit
