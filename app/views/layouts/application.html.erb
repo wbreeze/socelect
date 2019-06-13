@@ -9,9 +9,9 @@
 </head>
 <body>
   <div id="title">
-    <%= image_tag 'ThreeFourFive4_64.png',
-      alt:'Three, four, five tally marks'
-    %>
+    <%= link_to root_path do
+      image_tag 'ThreeFourFive4_64.png', alt:'Three, four, five tally marks'
+    end %>
     <h1><%= site_name %></h1>
   </div>
   <div class="content">
@@ -20,6 +20,7 @@
   <div id="foot">
     <ul>
       <li>License GPL-3.0</li>
+      <li><a href="/"><%= site_name %></a></li>
       <li><a href="/welcome/terms">terms</a></li>
       <li><a href="/welcome/terms#privacy">privacy</a></li>
       <li><a href="/welcome/contact">contact</a></li>

@@ -4,13 +4,15 @@
 
 #foot ul {
   display: block;
+  padding-left: 0;
+  margin-left: 1em;
   font-size: smaller;
   font-variant: small-caps;
 }
 
 #foot li {
   display: inline-block;
-  margin-right: 2em;
+  margin-right: 1em;
 }
 
 #foot a {
