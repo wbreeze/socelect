@@ -1,6 +1,8 @@
 set :target_server, ENV['SOCELECT_DEPLOY_TO'] || ask('deploy to server')
 set :target_port, ENV['SOCELECT_DEPLOY_PORT'] || ask('deploy to port', '22')
-set :deploy_user, ENV['SOCELECT_DEPLOY_AS_USER'] || ask('deploy as user')
+set(:deploy_user,
+  ENV['SOCELECT_DEPLOY_AS_USER'] || ask('deploy as user', 'deploy')
+)
 
 # server-based syntax
 # ======================

@@ -4,6 +4,21 @@ lock "~> 3.11.0"
 set :application, "socelect"
 set :repo_url, "git@github.com:wbreeze/socelect.git"
 
+set :rbenv_type, :user
+set :rbenv_ruby, File.read('../.ruby-version').strip
+set :rbenv_prefix, <<~PREFIX.gsub("\n", "\s")
+  RBENV_ROOT=#{fetch(:rbenv_path)}
+  RBENV_VERSION=#{fetch(:rbenv_ruby)}
+  #{fetch(:rbenv_path)}/bin/rbenv exec
+  PREFIX
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
+append :linked_dirs, 'vendor/bundle', '.bundle'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets'
+append :linked_dirs, 'public/system', 'public/uploads'
+append :linked_files, 'config/master.key'
+append :linked_files, 'db/socelect_production.sqlite3'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
