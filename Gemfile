@@ -31,4 +31,5 @@ end
 
 group :production do
   #gem 'mysql2'
+  gem 'sqlite3'
 end
