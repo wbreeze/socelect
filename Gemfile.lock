@@ -147,6 +147,10 @@ GEM
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
+    slug (4.1.0)
+      activerecord (> 3.0.0)
+      activesupport (> 3.0.0)
+      rake
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -186,6 +190,7 @@ DEPENDENCIES
   listen
   rails (~> 5.2.0)
   selenium-webdriver
+  slug
   sqlite3
   timecop
   uglifier

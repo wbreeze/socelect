@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~>5.2.0'
 gem 'bootsnap'
+gem 'slug'
 
 group :assets do
   gem 'uglifier'
@@ -25,11 +26,6 @@ group :test do
   gem 'timecop'
 end
 
-group :development, :test do
-  gem 'sqlite3'
-end
-
-group :production do
-  #gem 'mysql2'
+group :development, :test, :production do
   gem 'sqlite3'
 end
