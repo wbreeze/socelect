@@ -1,0 +1,19 @@
+#foot {
+  color: white;
+}
+
+#foot ul {
+  display: block;
+  font-size: smaller;
+  font-variant: small-caps;
+}
+
+#foot li {
+  display: inline-block;
+  margin-right: 2em;
+}
+
+#foot a {
+  text-decoration: none;
+  color: white;
+}

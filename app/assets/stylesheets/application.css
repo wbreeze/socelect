@@ -6,4 +6,5 @@
 *= require jquery-ui.structure
 *= require jquery-ui.theme
 *= require jquery.ptTimeSelect
+*= require foot
 */
