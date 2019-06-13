@@ -1,12 +1,11 @@
 class WelcomeController < ApplicationController
+  def index
+  end
 
-def index
-    #p request.env['REMOTE_HOST']
-    #p request.env['REMOTE_ADDR']
-end
-
-def page_view
-  render(params[:page])
-end
-
+  def page_view
+    page_list = %w(terms contact)
+    page_index = page_list.find_index(params[:page])
+    page_wanted = page_index ? page_list[page_index] : 'index'
+    render(page_wanted)
+  end
 end

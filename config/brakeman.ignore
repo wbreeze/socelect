@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "1b0609a5865f2f7c76b8c3accc40ddeb0a1936cb5d346bca89495cfccfe1dfb8",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/controllers/welcome_controller.rb",
+      "line": 9,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => (page_list[[\"terms\", \"contact\"].find_index(params[:page])] or \"index\"), {})",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "WelcomeController",
+        "method": "page_view"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "note": "White listed content pages"
+    }
+  ],
+  "updated": "2019-06-13 13:44:19 -0300",
+  "brakeman_version": "4.5.1"
+}
