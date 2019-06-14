@@ -37,21 +37,36 @@ class ChoicesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should show choice" do
+  test "should show choice only by slug" do
+    get :show, params: { id: @choice.id }
+    assert_response :not_found
     get :show, params: { id: @choice.to_param }
+    assert_response :not_found
+    get :show, params: { id: @choice.read_slug }
+    assert_response :success
+    get :show, params: { id: @choice.edit_slug }
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit only by edit slug" do
+    get :edit, params: { id: @choice.id }
+    assert_response :not_found
     get :edit, params: { id: @choice.to_param }
+    assert_response :not_found
+    get :show, params: { id: @choice.read_slug }
+    assert_response :not_found
+    get :show, params: { id: @choice.edit_slug }
     assert_response :success
   end
 
-  test "should update choice" do
-    put :update, params: {
-      id: @choice.to_param,
-      choice: @choice.attributes
-    }
+  test "should update choice only by edit slug" do
+    put :update, params: { id: @choice.id, choice: @choice.attributes }
+    assert_response :not_found
+    put :update, params: { id: @choice.to_param, choice: @choice.attributes }
+    assert_response :not_found
+    put :update, params: { id: @choice.read_slug, choice: @choice.attributes }
+    assert_response :not_found
+    put :update, params: { id: @choice.edit_slug, choice: @choice.attributes }
     assert_response :success
   end
 end
