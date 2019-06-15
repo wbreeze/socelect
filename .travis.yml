@@ -9,5 +9,6 @@ before_script:
   - bundle-audit update
 script:
   - rails test
+  - rails test:system
   - brakeman -z
   - bundle-audit
