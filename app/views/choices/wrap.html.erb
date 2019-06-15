@@ -2,7 +2,7 @@
 
 <div class="para">The link to share for expressing preferences is:</div>
 <div>
-  <a class="displayLink" href="<%= choice_path(@choice) %>"
+  <a class="displayLink" href="<%= choice_path(@choice.read_token) %>"
   >Click here to see your question. Copy this link to share!</a>
 </div>
 <div>Most browsers will allow
@@ -12,14 +12,14 @@ paste the link elsewhere, to publish.
 
 <div class="para">The link for viewing the result will be:</div>
 <div>
-<a class="displayLink" href="<%= result_choice_path(@choice) %>"
+<a class="displayLink" href="<%= result_choice_path(@choice.read_token) %>"
 >View result of question, <%= @choice.title %></a>
 </div>
 
 <div class="para">To edit your choice before anyone has expressed a preference,
 go to:</div>
 <div>
-<a class="displayLink" href="<%= edit_choice_path(@choice) %>"
+<a class="displayLink" href="<%= edit_choice_path(@choice.edit_token) %>"
 >Click here to edit your question, <%= @choice.title %></a>
 </div>
 
