@@ -6,34 +6,6 @@ class ChoicesControllerTest < ActionController::TestCase
     @choice.save!
   end
 
-  def choice_params(choice)
-    {
-      choice: {
-        title: choice.title,
-        description: choice.description,
-        opening_date: choice.opening.to_date,
-        opening_time: choice.opening.to_time,
-        deadline_date: choice.deadline.to_date,
-        deadline_time: choice.deadline.to_time,
-        alternatives_attributes: choice.alternatives.collect do |alt|
-          {
-            title: alt.title,
-            description: alt.description
-          }
-        end
-      }
-    }
-  end
-
-  def selection_params(choice)
-    alt_id = choice.alternatives[rand(choice.alternatives.count)].id
-    {
-      id: choice.read_token,
-      alternative: alt_id,
-      commit: 'Submit preference',
-    }
-  end
-
   test "should get new" do
     get :new
     assert_response :success
