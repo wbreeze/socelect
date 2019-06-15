@@ -2,6 +2,8 @@ require 'validTitleDescription'
 
 class Choice < ApplicationRecord
    include TitleDescriptionValidation
+   include Tokenz
+
    attr_accessor :opening_date, :opening_time, :deadline_date, :deadline_time
 
    validate :valid_title_and_description_lengths, :valid_alternative_count
@@ -10,6 +12,8 @@ class Choice < ApplicationRecord
    validates_associated :alternatives
    after_initialize :ensure_default_dates
    before_validation :resolve_dates
+   token_column(:read_token)
+   token_column(:edit_token)
 
    has_many :alternatives, :dependent=>:destroy
    accepts_nested_attributes_for :alternatives, allow_destroy: true,
