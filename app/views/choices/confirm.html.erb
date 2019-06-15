@@ -1,15 +1,16 @@
 <h1>Your selection</h1>
 
 <p>You selected:
-  <span class='alternativeTitle'><%= @alternative.title %></span>
+  <span class='alternative-title'><%= @alternative.title %></span>
 </p>
 
-<div class="para">The link for viewing the result will be:</div>
-<div>
-<a class="displayLink" href="<%= result_choice_path :id => @choice.id %>">View result of
-choice, <%= @choice.title %></a>
-</div>
-<div>Bookmark the link if you like, to save it.</div>
+<p>The link for viewing the result will be:</p>
+<p>
+  <%= link_to("View result of choice, #{@choice.title}",
+    result_choice_path(@choice.read_token), class: 'displayLink')
+  %>
+</p>
+<p>Bookmark the link if you like, to save it.</p>
 
 <%= render :partial => 'display', :object => @choice %>
 
