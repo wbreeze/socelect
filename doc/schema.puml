@@ -1,0 +1,43 @@
+@startuml
+
+skinparam linetype ortho
+
+entity "Choices" as choice {
+  *id : number <<generated>>
+  *read_token: string <<generated>>
+  *edit_token: string <<generated>>
+  --
+  title: text
+  description: text
+}
+
+entity "Alternatives" as alt {
+  *id: number <<generated>>
+  *choice_id: number <<FK>>
+  --
+  title: text
+  description: text
+}
+
+entity "Preferences" as pref {
+  *id: number <<generated>>
+  *choice_id: number <<FK>>
+  --
+  host: text
+  ip: text
+  chef: text
+}
+
+entity "Expressions" as expr {
+  *alternative_id: number <<FK>>
+  *preference_id: number <<FK>>
+  --
+  sequence: number <<generated>>
+}
+
+choice ||--o{ pref
+choice "2+" ||--|{ alt
+alt ||--o{ expr
+expr }o--|| pref
+
+@enduml
