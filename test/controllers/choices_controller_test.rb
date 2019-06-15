@@ -2,7 +2,8 @@ require 'test_helper'
 
 class ChoicesControllerTest < ActionController::TestCase
   setup do
-    @choice = choices(:one)
+    @choice = create_full_choice
+    @choice.save!
   end
 
   def choice_params(choice)
@@ -24,6 +25,15 @@ class ChoicesControllerTest < ActionController::TestCase
     }
   end
 
+  def selection_params(choice)
+    alt_id = choice.alternatives[rand(choice.alternatives.count)].id
+    {
+      id: choice.read_token,
+      alternative: alt_id,
+      commit: 'Submit preference',
+    }
+  end
+
   test "should get new" do
     get :new
     assert_response :success
@@ -37,36 +47,70 @@ class ChoicesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should show choice only by slug" do
+  test "should show choice only by read token" do
     get :show, params: { id: @choice.id }
     assert_response :not_found
     get :show, params: { id: @choice.to_param }
     assert_response :not_found
-    get :show, params: { id: @choice.read_slug }
+    get :show, params: { id: @choice.read_token }
     assert_response :success
-    get :show, params: { id: @choice.edit_slug }
-    assert_response :success
+    get :show, params: { id: @choice.edit_token }
+    assert_response :not_found
   end
 
-  test "should get edit only by edit slug" do
+  test "should get edit only by edit token" do
     get :edit, params: { id: @choice.id }
     assert_response :not_found
     get :edit, params: { id: @choice.to_param }
     assert_response :not_found
-    get :show, params: { id: @choice.read_slug }
+    get :edit, params: { id: @choice.read_token }
     assert_response :not_found
-    get :show, params: { id: @choice.edit_slug }
+    get :edit, params: { id: @choice.edit_token }
     assert_response :success
   end
 
-  test "should update choice only by edit slug" do
+  test "should update choice only by edit token" do
     put :update, params: { id: @choice.id, choice: @choice.attributes }
-    assert_response :not_found
+    assert_response :bad_request
     put :update, params: { id: @choice.to_param, choice: @choice.attributes }
+    assert_response :bad_request
+    put :update, params: { id: @choice.read_token, choice: @choice.attributes }
+    assert_response :bad_request
+    put :update, params: { id: @choice.edit_token, choice: @choice.attributes }
+    assert_response :success
+  end
+
+  test 'should post selection only by read token' do
+    params = selection_params(@choice)
+    post :selection, params: params
+    assert_response :found
+    params[:id] = @choice.id
+    post :selection, params: params
+    assert_response :bad_request
+    params[:id] = @choice.edit_token
+    post :selection, params: params
+    assert_response :bad_request
+  end
+
+  test "should show result only by read token" do
+    get :result, params: { id: @choice.id }
     assert_response :not_found
-    put :update, params: { id: @choice.read_slug, choice: @choice.attributes }
+    get :result, params: { id: @choice.to_param }
     assert_response :not_found
-    put :update, params: { id: @choice.edit_slug, choice: @choice.attributes }
+    get :result, params: { id: @choice.read_token }
+    assert_response :success
+    get :result, params: { id: @choice.edit_token }
+    assert_response :not_found
+  end
+
+  test "should show wrap-up only by edit token" do
+    get :wrap, params: { id: @choice.id }
+    assert_response :not_found
+    get :wrap, params: { id: @choice.to_param }
+    assert_response :not_found
+    get :wrap, params: { id: @choice.read_token }
+    assert_response :not_found
+    get :wrap, params: { id: @choice.edit_token }
     assert_response :success
   end
 end

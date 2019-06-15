@@ -2,9 +2,8 @@ class ChoicesController < ApplicationController
 
   # GET /choices/1
   def show
-    @choice = Choice.find(params[:id])
-    @person = get_current_person
-    # TODO determine person eligibility for choice
+    @choice = Choice.find_by(read_token: params[:id])
+    head :not_found unless @choice
   end
 
   # GET /choices/new
@@ -15,8 +14,8 @@ class ChoicesController < ApplicationController
 
   # GET /choices/1/edit
   def edit
-    # TODO determine choice eligibility for edit
-    @choice = Choice.find(params[:id])
+    @choice = Choice.find_by(edit_token: params[:id])
+    head :not_found unless @choice
   end
 
   # POST /choices
@@ -31,7 +30,8 @@ class ChoicesController < ApplicationController
 
   # PUT /choices/1
   def update
-    @choice = Choice.find(params[:id])
+    @choice = Choice.find_by(edit_token: params[:id])
+    return head :bad_request unless @choice
     if @choice.update_attributes(choice_params)
       render :wrap
     else
@@ -41,9 +41,9 @@ class ChoicesController < ApplicationController
 
   # POST /choices/:id/selection
   def selection
-    @choice = Choice.find(params[:id])
-    @alternative = Alternative.find(params[:alternative])
-    @person = get_current_person
+    @choice = Choice.find_by(read_token: params[:id])
+    return head :bad_request unless @choice
+    @alternative = @choice.alternatives.find(params[:alternative])
     @preference = Preference.new(:choice => @choice)
     @preference.chef_parameters(request)
     @expression = @preference.expression.build(:sequence => 1)
@@ -59,7 +59,6 @@ class ChoicesController < ApplicationController
   # GET /choices/:id/confirm
   # :id is Preference id
   def confirm
-    #TODO validate requester has access to preference
     @preference = Preference.find(params[:id])
     @choice = @preference.choice
     @alternative = @preference.expression[0].alternative
@@ -67,7 +66,8 @@ class ChoicesController < ApplicationController
 
   # GET /choices/:id/result
   def result
-    @choice = Choice.find(params[:id])
+    @choice = Choice.find_by(read_token: params[:id])
+    return head :not_found unless @choice
     @alternatives = @choice.alternatives.sort {
       |x,y| -1 * (x.expressions.count <=> y.expressions.count)
     }
@@ -75,7 +75,8 @@ class ChoicesController < ApplicationController
 
   # GET /choices/:id/wrap
   def wrap
-    @choice = Choice.find(params[:id])
+    @choice = Choice.find_by(edit_token: params[:id])
+    head :not_found unless @choice
   end
 
   def choice_params
