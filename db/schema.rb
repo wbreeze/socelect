@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_153925) do
+ActiveRecord::Schema.define(version: 2019_06_15_190020) do
 
   create_table "alternatives", force: :cascade do |t|
     t.string "title", limit: 256, null: false
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_06_14_153925) do
     t.string "ip", limit: 32
     t.string "chef", limit: 256
     t.integer "choice_id"
+    t.string "token", limit: 32
+    t.index ["token"], name: "index_preferences_on_token", unique: true
   end
 
   create_table "simple_captcha_data", force: :cascade do |t|
