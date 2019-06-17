@@ -6,8 +6,7 @@ Rails.application.routes.draw do
     member do
       get 'result'
       get 'wrap'
-      post 'selection'
-      get 'confirm'
     end
   end
+  resources :preferences, only: %w(create show)
 end
