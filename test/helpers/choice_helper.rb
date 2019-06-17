@@ -38,7 +38,9 @@ module ChoiceHelper
   def selection_params(choice, alt_id = nil)
     alt_id ||= choice.alternatives[rand(choice.alternatives.count)].id
     {
-      id: choice.read_token,
+      choice: {
+        read_token: choice.read_token,
+      },
       alternative: alt_id,
       commit: 'Submit preference',
     }

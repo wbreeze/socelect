@@ -1,4 +1,5 @@
-<%= form_tag selection_choice_path do %>
+<%= form_tag preferences_path do %>
+  <%= hidden_field :choice, :read_token %>
   <dl class="alternatives">
     <% first = true %>
     <% @choice.alternatives.shuffle.each do |alt| %>

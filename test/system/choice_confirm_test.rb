@@ -17,6 +17,10 @@ class ChoiceConfirmTest < ApplicationSystemTestCase
   end
 
   test "confirm shows results link" do
-    assert_link(result_choice_path(@choice.read_token))
+    assert_xpath(<<~PATH.gsub("\n",'')
+      //div[@class="content"]
+      //a[@href="#{result_choice_path(@choice.read_token)}"]
+      PATH
+    )
   end
 end

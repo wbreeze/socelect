@@ -16,7 +16,7 @@ class ChoicesControllerTest < ActionController::TestCase
     assert_difference('Choice.count') do
       post :create, params: choice_params(more_choice)
     end
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should show choice only by read token" do
@@ -49,19 +49,8 @@ class ChoicesControllerTest < ActionController::TestCase
     put :update, params: { id: @choice.read_token, choice: @choice.attributes }
     assert_response :bad_request
     put :update, params: { id: @choice.edit_token, choice: @choice.attributes }
-    assert_response :success
-  end
-
-  test 'should post selection only by read token' do
-    params = selection_params(@choice)
-    post :selection, params: params
-    assert_response :found
-    params[:id] = @choice.id
-    post :selection, params: params
-    assert_response :bad_request
-    params[:id] = @choice.edit_token
-    post :selection, params: params
-    assert_response :bad_request
+    assert_response :redirect
+    assert_redirected_to wrap_choice_path(@choice.edit_token)
   end
 
   test "should show result only by read token" do
