@@ -14,4 +14,10 @@ test:
   timeout: 5000
 
 production:
-  database: db/socelect_production.sqlite3
+  database: <%= Rails.application.credentials.dig(:database, :production, :dbname) %>
+  username: <%= Rails.application.credentials.dig(:database, :production, :username) %>
+  password: <%= Rails.application.credentials.dig(:database, :production, :password) %>
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  socket: /tmp/mysql.sock
