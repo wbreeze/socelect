@@ -10,5 +10,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
     params = selection_params(@choice)
     post preferences_path, params: params
     assert_response :redirect
+    follow_redirect!
+    assert_response :success
   end
 end
