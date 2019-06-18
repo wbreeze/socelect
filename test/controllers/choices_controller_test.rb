@@ -41,16 +41,33 @@ class ChoicesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update choice only by edit token" do
-    put :update, params: { id: @choice.id, choice: @choice.attributes }
-    assert_response :bad_request
-    put :update, params: { id: @choice.to_param, choice: @choice.attributes }
-    assert_response :bad_request
-    put :update, params: { id: @choice.read_token, choice: @choice.attributes }
-    assert_response :bad_request
-    put :update, params: { id: @choice.edit_token, choice: @choice.attributes }
+  test "should accept valid edit token on update choice" do
+    patch_params = choice_params(@choice)
+    patch_params[:id] = @choice.id
+    patch :update, params: patch_params
     assert_response :redirect
     assert_redirected_to wrap_choice_path(@choice.edit_token)
+
+    patch_params[:id] = @choice.to_param
+    patch :update, params: patch_params
+    assert_response :redirect
+    assert_redirected_to wrap_choice_path(@choice.edit_token)
+
+    patch_params[:id] = @choice.read_token
+    patch :update, params: patch_params
+    assert_response :bad_request
+
+    patch_params[:id] = @choice.edit_token
+    patch :update, params: patch_params
+    assert_response :bad_request
+  end
+
+  test "should reject invalid edit token on update choice" do
+    patch_params = choice_params(@choice)
+    patch_params[:id] = @choice.id
+    patch_params[:choice][:edit_token] = 'bad_token'
+    patch :update, params: patch_params
+    assert_response :bad_request
   end
 
   test "should show result only by read token" do

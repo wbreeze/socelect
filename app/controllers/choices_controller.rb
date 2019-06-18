@@ -30,12 +30,15 @@ class ChoicesController < ApplicationController
 
   # PUT /choices/1
   def update
-    @choice = Choice.find_by(edit_token: params[:id])
-    return head :bad_request unless @choice
-    if @choice.update_attributes(choice_params)
+    @choice = Choice.find_by(id: params[:id])
+    cparms = params[:choice]
+    unless cparms && @choice && cparms[:edit_token] == @choice.edit_token
+      return head :bad_request
+    end
+    if @choice.update(choice_params)
       redirect_to wrap_choice_path(@choice.edit_token)
     else
-      render :edit
+      render :edit, id: @choice.edit_token
     end
   end
 

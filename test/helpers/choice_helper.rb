@@ -25,6 +25,8 @@ module ChoiceHelper
         opening_time: choice.opening.to_time,
         deadline_date: choice.deadline.to_date,
         deadline_time: choice.deadline.to_time,
+        edit_token: choice.edit_token,
+        read_token: choice.read_token,
         alternatives_attributes: choice.alternatives.collect do |alt|
           {
             title: alt.title,
