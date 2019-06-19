@@ -1,6 +1,10 @@
-<div class="date_time_field">
-  <%= form.label(field + '_date') %>
-  <%= form.text_field(field + '_date', class: 'date_entry') %>
-  <%= form.label(field + '_time') %>
-  <%= form.text_field(field + '_time', class: 'time_entry') %>
+<div class="date-time data-group">
+  <div class="field">
+    <%= form.label(field + '_date') %>
+    <%= form.text_field(field + '_date', class: 'date_entry') %>
+  </div>
+  <div class="field">
+    <%= form.label(field + '_time') %>
+    <%= form.text_field(field + '_time', class: 'time_entry') %>
+  </div>
 </div>

@@ -5,8 +5,12 @@ module ChoicesHelper
     fields = form.fields_for(:alternatives, alt, child_index: id) do |f|
       render(partial: 'alternative', locals: { form: f })
     end
-    link_to('Add an alternative', '#', id: 'add_alternative', data: {
-      id: id, fields: fields.gsub("\n", '')
-    })
+    link_to('Add an alternative', '#',
+      id: 'add_alternative',
+      class: 'displayLink',
+      data: {
+        id: id, fields: fields.gsub("\n", '')
+      }
+    )
   end
 end

@@ -1,9 +1,11 @@
 <% f = choice_title_desc %>
-<div class="field">
-  <%= f.label 'The question' %>
-  <%= f.text_field :title %>
-</div>
-<div class="field">
-  <%= f.label 'Additional information' %>
-  <%= f.text_area :description, :rows => 3 %>
+<div class="choice data-group">
+  <div class="field">
+    <%= f.label 'The question' %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label 'Additional information' %>
+    <%= f.text_area :description, :rows => 3 %>
+  </div>
 </div>

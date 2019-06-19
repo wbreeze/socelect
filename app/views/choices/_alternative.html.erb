@@ -8,7 +8,10 @@
     <%= form.text_area :description, :rows => 2 %>
   </div>
   <div class="field">
-    <%= link_to('Remove', '#', data: { remove_alternative: 'yes' }) %>
+    <%= link_to('Remove', '#',
+      class: 'displayLink',
+      data: { remove_alternative: 'yes' }
+    ) %>
   </div>
   <%= form.hidden_field :_destroy %>
 </div>
