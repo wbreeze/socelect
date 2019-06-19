@@ -30,12 +30,12 @@ div.field * {
   display:block;
 }
 
-div.alternative {
+form div.alternative {
   border-bottom: 2pt solid black;
   margin-bottom: 2ex;
 }
 
-div.alterative:last-of-type {
+form div.alterative:last-of-type {
   border-bottom-style: none;
   margin-bottom: 0pt;
 }
