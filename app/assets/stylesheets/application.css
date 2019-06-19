@@ -2,6 +2,7 @@
 *= require_self
 *= require scaffold
 *= require socelect
+*= require form_layout
 *= require jquery-ui
 *= require jquery-ui.structure
 *= require jquery-ui.theme
