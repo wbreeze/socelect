@@ -1,0 +1,14 @@
+{
+  "name": "socelect",
+  "version": "1.0.0",
+  "description": "JavaScript package for socelect",
+  "main": "index.js",
+  "repository": "git@github.com:wbreeze/socelect.git",
+  "author": "Douglas Lovell <doug@wbreeze.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "poui": "^1.0.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

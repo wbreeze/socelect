@@ -3,6 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 vendor/**/*
+node_modules/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

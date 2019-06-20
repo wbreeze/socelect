@@ -4,6 +4,9 @@
 //= require jquery-3.4.1
 //= require jquery-ui-1.12.1
 //= require jquery.ptTimeSelect
+//= require react
+//= require react_ujs
+//= require components
 //= require_self
 $(document).ready(function() {
   $('input.time_entry').ptTimeSelect();
