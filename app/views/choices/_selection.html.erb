@@ -1,18 +1,6 @@
 <%= form_tag preferences_path do %>
   <%= hidden_field :choice, :read_token %>
-  <dl class="alternatives">
-    <% first = true %>
-    <% @choice.alternatives.shuffle.each do |alt| %>
-      <dt class="alternativeTitle">
-        <%= radio_button_tag :alternative, alt.id, :checked => first %>
-        <%= alt.title %>
-      </dt>
-      <dd class="alternativeDescription">
-        <%= alt.description %>
-      </dd>
-      <% first = false %>
-    <% end %>
-  </dl>
+  <%= render 'selectionChooseOne' %>
   <div class="actions">
     <%= submit_tag 'Submit preference' %>
   </div>

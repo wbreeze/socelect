@@ -1,0 +1,13 @@
+<dl class="alternatives">
+  <% first = true %>
+  <% @choice.alternatives.shuffle.each do |alt| %>
+    <dt class="alternativeTitle">
+      <%= radio_button_tag :alternative, alt.id, :checked => first %>
+      <%= alt.title %>
+    </dt>
+    <dd class="alternativeDescription">
+      <%= alt.description %>
+    </dd>
+    <% first = false %>
+  <% end %>
+</dl>

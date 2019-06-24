@@ -26,13 +26,13 @@ class CreateQuestionsTest < ApplicationSystemTestCase
       fill_in(id: 'choice_description', with: description)
     end
     alt_title_inputs = all(:xpath,
-      '//div[@class="alternative"]//input[@type="text"]')
+      '//div[contains(@class,"alternative")]//input[@type="text"]')
     assert_equal(alt_titles.length, alt_title_inputs.length);
     alt_title_inputs.each_with_index do |input, i|
       input.fill_in(with: alt_titles[i])
     end
     alt_description_inputs = all(:xpath,
-      '//div[@class="alternative"]//textarea')
+      '//div[contains(@class,"alternative")]//textarea')
     assert_equal(alt_descriptions.length, alt_description_inputs.length);
     alt_description_inputs.each_with_index do |ta, i|
       ta.fill_in(with: alt_descriptions[i])
