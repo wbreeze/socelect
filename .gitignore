@@ -6,7 +6,6 @@ vendor/**/*
 node_modules/
 .cache/
 yarn-error.log
-app/assets/javascripts/parceled/**
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
