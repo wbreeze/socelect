@@ -13,9 +13,9 @@
   <h3>Dates</h3>
   <div id='open-close'>
     <%= render partial: 'date_time_select',
-      locals: { form: f, field: 'opening' } %>
+      locals: { form: f, field: 'opening', value: @choice.opening } %>
     <%= render partial: 'date_time_select',
-      locals: { form: f, field: 'deadline' } %>
+      locals: { form: f, field: 'deadline', value: @choice.deadline } %>
   </div>
 
   <div class="actions">

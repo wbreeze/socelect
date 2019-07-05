@@ -4,7 +4,10 @@
     <%= form.text_field(field + '_date', class: 'date_entry') %>
   </div>
   <div class="field">
-    <%= form.label(field + '_time') %>
-    <%= form.text_field(field + '_time', class: 'time_entry') %>
+    <% id = "choice[#{field}_time]" %>
+    <%= form.label(id, "#{field} local time".capitalize) %>
+    <span data-time-field="<%= id %>"
+      data-time-value="05:15"
+    />
   </div>
 </div>
