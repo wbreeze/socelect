@@ -3,11 +3,9 @@
 //= require rails-ujs
 //= require jquery-3.4.1
 //= require jquery-ui-1.12.1
-//= require jquery.ptTimeSelect
 //= require parceled
 //= require_self
 $(document).ready(function() {
-  $('input.time_entry').ptTimeSelect();
   $('input.date_entry').datepicker({
     changeMonth: true,
     changeYear: true,
