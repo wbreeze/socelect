@@ -8,9 +8,9 @@
   "license": "GPL-3.0",
   "scripts": {
     "clean": "rm app/assets/javascripts/parceled/*",
-    "build": "yarn run clean && parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-content-hash",
-    "serve": "parcel src/index.html --out-dir app/assets/javascripts/parceled",
-    "watch": "parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
+    "build": "yarn run clean && parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-content-hash --target browser",
+    "serve": "parcel src/index.html --out-dir app/assets/javascripts/parceled --target browser --public-url '/parceled'",
+    "watch": "parcel watch src/index.js --out-dir app/assets/javascripts/parceled --target browser --public-url '/parceled'"
   },
   "dependencies": {
     "poui": "^1.0.4",
