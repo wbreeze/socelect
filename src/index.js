@@ -19,17 +19,15 @@ document.addEventListener("DOMContentLoaded", function() {
   const now = new Date();
   const initial = now.getHours() + ":" + now.getMinutes();
   time_fields.forEach((time_field) => {
-    const field_name = time_field.getAttribute('data-time-field');
+    const field_id = time_field.getAttribute('data-time-field');
+    const field_name = time_field.getAttribute('data-time-name');
     const field_value = time_field.getAttribute('data-time-value') || initial;
-    const input_element = <TimeInputElement
-        value={field_value}
-        name={field_name}
-      />;
     ReactDOM.render(<TimeField
-        value={field_value}
+        id={field_id}
         name={field_name}
+        value={field_value}
         onChange={function(){}}
-        input={input_element}
+        input={<TimeInputElement />}
       />, time_field);
     });
   },

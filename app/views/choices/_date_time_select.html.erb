@@ -1,13 +1,17 @@
 <div class="date-time data-group">
   <div class="field">
-    <%= form.label(field + '_date') %>
-    <%= form.text_field(field + '_date', class: 'date_entry') %>
+    <% id = "#{field}_date" %>
+    <%= form.label(id) %>
+    <%= form.text_field(id, class: 'date_entry') %>
   </div>
   <div class="field">
-    <% id = "choice[#{field}_time]" %>
+    <% id = "#{field}_time" %>
     <%= form.label(id, "#{field} local time".capitalize) %>
-    <span data-time-field="<%= id %>"
+    <span
+      data-time-field="<%= "choice_#{id}" %>"
+      data-time-name="<%= "choice[#{id}]" %>"
       data-time-value="05:15"
+      class="time_entry"
     />
   </div>
 </div>

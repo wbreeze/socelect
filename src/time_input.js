@@ -7,13 +7,10 @@ import React from "react";
  * - it eliminates the inline styling
 */
 export default function TimeInputElement(props) {
-  const {value, name, ...rest_props} = props;
   return (
     <input
-      {...rest_props}
+      {...props}
       type="tel"
-      name={name}
-      value={value}
     />
   );
 }
