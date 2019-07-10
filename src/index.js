@@ -5,16 +5,14 @@ import TimeField from "react-simple-timefield";
 import TimeInputElement from "./time_input";
 
 document.addEventListener("DOMContentLoaded", function() {
-  /*
   ReactDOM.render(<PartoWithSelection
-      itemList={
+      itemList={[
         { "key": "a", "description": "Apple" },
         { "key": "p", "description": "Pear" },
         { "key": "b", "description": "Banana" }
-      }
+      ]}
       parto={[]}
-    />, document.getElementById("poui-root"));
-  */
+    />, document.getElementById("poui-component"));
   const time_fields = document.querySelectorAll('[data-time-field]');
   const now = new Date();
   const initial = now.getHours() + ":" + now.getMinutes();
