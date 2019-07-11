@@ -4247,9 +4247,9 @@ posthtml@^0.11.2, posthtml@^0.11.3:
     posthtml-render "^1.1.5"
 
 poui@^1.0.4:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/poui/-/poui-1.0.5.tgz#d5e1b2e5181cc85a7754432a8c910b320c2a8521"
-  integrity sha512-qwwHsr7R/Llz78MYH6116n5bSYJlJdXNWDOPvr//mP3Y0iUWRsZjFwmSy1pVhAKckVLf8CdwrDZL3BH7thQi9A==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/poui/-/poui-1.1.1.tgz#fdbf58675ff2977eac1d7121de4c5364b3d88d8c"
+  integrity sha512-NGGuikIdpeRt01l178L+6NBvpOveoNtQt4MfUMoHtNbNGCp1O+tUkbGeSwZcMacLjbIlAtx5191qR9C3fliuYw==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
