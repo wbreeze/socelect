@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { PartoWithSelection } from "poui";
+import { Poui } from "poui";
 import TimeField from "react-simple-timefield";
 import TimeInputElement from "./time_input";
 
 document.addEventListener("DOMContentLoaded", function() {
-  ReactDOM.render(<PartoWithSelection
+  ReactDOM.render(<Poui
       itemList={[
         { "key": "a", "description": "Apple" },
         { "key": "p", "description": "Pear" },
