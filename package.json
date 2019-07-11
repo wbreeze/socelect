@@ -13,6 +13,7 @@
     "watch": "parcel watch src/index.js"
   },
   "dependencies": {
+    "core-js": "3",
     "poui": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
