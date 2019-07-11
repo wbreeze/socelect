@@ -2,14 +2,15 @@
   "name": "socelect",
   "version": "1.0.0",
   "description": "JavaScript package for socelect",
+  "browserslist": "> 0.2% or last 1 version and not dead",
   "repository": "git@github.com:wbreeze/socelect.git",
   "author": "Douglas Lovell <doug@wbreeze.com>",
   "license": "GPL-3.0",
   "scripts": {
     "clean": "rm -rf app/assets/javascripts/parceled",
-    "build": "yarn run clean && parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-content-hash",
-    "serve": "parcel src/index.html --out-dir app/assets/javascripts/parceled",
-    "watch": "parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
+    "build": "yarn run clean && babel src -d app/assets/javascripts/parceled",
+    "serve": "parcel src/index.html",
+    "watch": "parcel watch src/index.js"
   },
   "dependencies": {
     "poui": "^1.0.4",
@@ -19,6 +20,7 @@
     "react-simple-timefield": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.0",
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
