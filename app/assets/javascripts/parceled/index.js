@@ -2193,21 +2193,24 @@ var _time_input = _interopRequireDefault(require("./time_input"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  var poui_fields = document.querySelectorAll('[poui-component]');
+  var poui_fields = document.querySelectorAll('[data-poui-field]');
   poui_fields.forEach(function (poui_field) {
+    var field_id = poui_field.getAttribute('data-poui-field');
+    var field_list = poui_field.getAttribute('data-poui-items');
+    var field_value = poui_field.getAttribute('data-poui-parto') || [];
+
+    if (typeof field_list === "string") {
+      field_list = JSON.parse(field_list);
+    }
+
+    if (typeof field_value === "string") {
+      field_value = JSON.parse(field_value);
+    }
+
     _reactDom.default.render(_react.default.createElement(_poui.Poui, {
-      itemList: [{
-        "key": "a",
-        "description": "Apple"
-      }, {
-        "key": "p",
-        "description": "Pear"
-      }, {
-        "key": "b",
-        "description": "Banana"
-      }],
-      parto: []
-    }), poui - field);
+      itemList: field_list,
+      parto: field_value
+    }), poui_field);
   });
   var time_fields = document.querySelectorAll('[data-time-field]');
   var now = new Date();

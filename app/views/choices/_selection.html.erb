@@ -1,6 +1,6 @@
 <%= form_tag preferences_path do %>
   <%= hidden_field :choice, :read_token %>
-  <%= render 'selectionChooseOne' %>
+  <%= render 'selectionRankPartial' %>
   <div class="actions">
     <%= submit_tag 'Submit preference' %>
   </div>

@@ -5,16 +5,21 @@ import TimeField from "react-simple-timefield";
 import TimeInputElement from "./time_input";
 
 document.addEventListener("DOMContentLoaded", function() {
-  const poui_fields = document.querySelectorAll('[poui-component]');
+  const poui_fields = document.querySelectorAll('[data-poui-field]');
   poui_fields.forEach((poui_field) => {
+    const field_id = poui_field.getAttribute('data-poui-field');
+    let field_list = poui_field.getAttribute('data-poui-items');
+    let field_value = poui_field.getAttribute('data-poui-parto') || [];
+    if (typeof field_list === "string") {
+      field_list = JSON.parse(field_list);
+    }
+    if (typeof field_value === "string") {
+      field_value = JSON.parse(field_value);
+    }
     ReactDOM.render(<Poui
-        itemList={[
-          { "key": "a", "description": "Apple" },
-          { "key": "p", "description": "Pear" },
-          { "key": "b", "description": "Banana" }
-        ]}
-        parto={[]}
-      />, poui-field);
+        itemList={field_list}
+        parto={field_value}
+      />, poui_field);
   });
   const time_fields = document.querySelectorAll('[data-time-field]');
   const now = new Date();

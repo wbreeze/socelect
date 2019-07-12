@@ -1,1 +1,13 @@
-<%= react_component("Poui", @choice.to_json) %>
+<% items = [
+     { key: 'A', description: 'Ace' },
+     { key: 'B', description: 'Box' },
+     { key: 'C', description: 'Cat' },
+     { key: 'D', description: 'Dig' }
+   ].to_json
+%>
+<div
+  class="poui-entry"
+  data-poui-field="<%= @choice.read_token %>"
+  data-poui-items="<%= items %>"
+  data-poui-parto="[]"
+></div>
