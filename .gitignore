@@ -6,6 +6,7 @@ vendor/**/*
 node_modules/
 .cache/
 yarn-error.log
+dist
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
