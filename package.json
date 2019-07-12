@@ -6,12 +6,13 @@
   "author": "Douglas Lovell <doug@wbreeze.com>",
   "license": "GPL-3.0",
   "scripts": {
-    "clean": "rm app/assets/javascripts/parceled/*",
+    "clean": "rm -f app/assets/javascripts/parceled/*",
     "build": "yarn run clean && parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-content-hash",
     "serve": "parcel src/index.html --out-dir app/assets/javascripts/parceled",
     "watch": "parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
   },
   "dependencies": {
+    "lodash": "^4.17.14",
     "poui": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
