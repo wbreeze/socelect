@@ -5,7 +5,7 @@ set :application, "socelect"
 set :repo_url, "git@github.com:wbreeze/socelect.git"
 
 set :rbenv_type, :user
-set :rbenv_ruby, File.read('../.ruby-version').strip
+set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, <<~PREFIX.gsub("\n", "\s")
   RBENV_ROOT=#{fetch(:rbenv_path)}
   RBENV_VERSION=#{fetch(:rbenv_ruby)}
