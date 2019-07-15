@@ -6,9 +6,6 @@ class ChoiceConfirmTest < ApplicationSystemTestCase
     @choice.save!
     @alternative = @choice.alternatives.first
     visit choice_path(@choice.read_token)
-    radio = find(:xpath,
-      "//form/dl[@class='alternatives']//input[@value='#{@alternative.id}']")
-    radio.click
     click_on "Submit preference"
   end
 

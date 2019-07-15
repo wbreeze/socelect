@@ -47,6 +47,17 @@ module ChoiceHelper
       commit: 'Submit preference',
     }
   end
+
+  def parto_selection_params(choice, alt_id = nil)
+    alt_id ||= choice.alternatives[rand(choice.alternatives.count)].id
+    {
+      choice: {
+        read_token: choice.read_token,
+        parto: [alt_id.to_s, []].to_json
+      },
+      commit: 'Submit preference',
+    }
+  end
 end
 
 class ActiveSupport::TestCase

@@ -13,7 +13,17 @@ class PreferencesController < ApplicationController
   def create
     @choice = Choice.find_by(read_token: choice_params[:read_token])
     return head :bad_request unless @choice
-    alternative = @choice.alternatives.find(alternative_param)
+    if (params[:alternative])
+      alternative = @choice.alternatives.find(alternative_param)
+    elsif (choice_params[:parto])
+      parto = choice_params[:parto]
+      parto = JSON.parse(choice_params[:parto])
+      first = parto[0]
+      first = first[0] if (first.kind_of? Array)
+      alternative = @choice.alternatives.find(first);
+    else
+      return head :bad_request
+    end
     preference = build_select_alternative_preference(@choice, alternative)
     derive_chef_to_preference(preference, request)
 
@@ -25,7 +35,7 @@ class PreferencesController < ApplicationController
   end
 
   def choice_params
-    params.require(:choice).permit(:read_token) do |cp|
+    params.require(:choice).permit(:read_token, :parto) do |cp|
       cp.require(:read_token)
     end
   end

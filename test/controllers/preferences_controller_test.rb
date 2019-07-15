@@ -6,8 +6,16 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
     @choice.save!
   end
 
-  test 'should post selection by read token' do
+  test 'posts selection' do
     params = selection_params(@choice)
+    post preferences_path, params: params
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+  end
+
+  test 'posts partial ordering' do
+    params = parto_selection_params(@choice)
     post preferences_path, params: params
     assert_response :redirect
     follow_redirect!
