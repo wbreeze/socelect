@@ -1,13 +1,6 @@
-<% items = [
-     { key: 'A', description: 'Ace' },
-     { key: 'B', description: 'Box' },
-     { key: 'C', description: 'Cat' },
-     { key: 'D', description: 'Dig' }
-   ].to_json
-%>
 <div
   class="poui-entry"
   data-poui-field="choice[parto]"
-  data-poui-items="<%= items %>"
+  data-poui-items="<%= @choice.parto_encoding.to_json %>"
   data-poui-parto="[]"
 ></div>

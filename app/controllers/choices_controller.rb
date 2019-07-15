@@ -1,9 +1,12 @@
+require 'choice/parto_coding'
+
 class ChoicesController < ApplicationController
 
   # GET /choices/1
   def show
     @choice = Choice.find_by(read_token: params[:id])
     head :not_found unless @choice
+    @choice.extend(Choice::PartoCoding)
   end
 
   # GET /choices/new
