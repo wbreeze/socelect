@@ -35,4 +35,32 @@ module PreferenceExpression
     end
     preference
   end
+
+  def decode_group(group)
+    if group.length == 1
+      group[0].alternative.id.to_s
+    else
+      group.collect do |xpr|
+        xpr.alternative.id.to_s
+      end
+    end
+  end
+
+  def parto_expression(preference)
+    pexpr = []
+    group = []
+    last_rank = 0
+    preference.expressions.includes(:alternative)
+        .order(:sequence).each do |expr|
+      if (expr.sequence != last_rank && !group.empty?)
+        pexpr << decode_group(group)
+        group = [expr]
+      else
+        group << expr
+      end
+      last_rank = expr.sequence
+    end
+    pexpr << decode_group(group)
+    pexpr.to_json
+  end
 end

@@ -1,3 +1,5 @@
+require 'choice/parto_coding'
+
 class PreferencesController < ApplicationController
   include PreferenceExpression
 
@@ -5,8 +7,9 @@ class PreferencesController < ApplicationController
   def show
     @preference = Preference.find_by(token: params[:id])
     return head :not_found unless @preference
+    @parto = parto_expression(@preference)
     @choice = @preference.choice
-    @alternative = @preference.expressions[0].alternative
+    @choice.extend(Choice::PartoCoding)
   end
 
   # POST /preferences/create
