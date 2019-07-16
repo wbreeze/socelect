@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import TimeField from "react-simple-timefield";
 import TimeInputElement from "./time_input";
 import PouiInput from "./poui_input";
+import populatePartoDisplay from "./parto_display"
 
 function populatePoui() {
   const poui_fields = document.querySelectorAll('[data-poui-field]');
@@ -26,6 +27,7 @@ function populatePoui() {
 
 document.addEventListener("DOMContentLoaded", function() {
   populatePoui();
+  populatePartoDisplay();
   const time_fields = document.querySelectorAll('[data-time-field]');
   const now = new Date();
   const initial = now.getHours() + ":" + now.getMinutes();

@@ -2302,6 +2302,50 @@ function withInput(Wrapped) {
 
 var _default = PouiInput;
 exports.default = _default;
+},{"react":"1n8/","react-dom":"NKHc","prop-types":"5D9O","poui":"9WA7"}],"aKzs":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _poui = require("poui");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function populatePartoDisplay() {
+  var parto_divs = document.querySelectorAll('[data-parto-display]');
+  parto_divs.forEach(function (parto_div) {
+    var field_list = parto_div.getAttribute('data-parto-items');
+
+    if (typeof field_list === "string") {
+      field_list = JSON.parse(field_list);
+    }
+
+    var field_value = parto_div.getAttribute('data-parto-display') || [];
+
+    if (typeof field_value === "string") {
+      field_value = JSON.parse(field_value);
+    }
+
+    _reactDom.default.render(_react.default.createElement(_poui.Parto, {
+      itemList: field_list,
+      parto: field_value
+    }), parto_div);
+  });
+}
+
+var _default = populatePartoDisplay;
+exports.default = _default;
 },{"react":"1n8/","react-dom":"NKHc","prop-types":"5D9O","poui":"9WA7"}],"Focm":[function(require,module,exports) {
 "use strict";
 
@@ -2314,6 +2358,8 @@ var _reactSimpleTimefield = _interopRequireDefault(require("react-simple-timefie
 var _time_input = _interopRequireDefault(require("./time_input"));
 
 var _poui_input = _interopRequireDefault(require("./poui_input"));
+
+var _parto_display = _interopRequireDefault(require("./parto_display"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2342,6 +2388,7 @@ function populatePoui() {
 
 document.addEventListener("DOMContentLoaded", function () {
   populatePoui();
+  (0, _parto_display.default)();
   var time_fields = document.querySelectorAll('[data-time-field]');
   var now = new Date();
   var initial = now.getHours() + ":" + now.getMinutes();
@@ -2361,4 +2408,4 @@ document.addEventListener("DOMContentLoaded", function () {
 }, {
   "once": true
 });
-},{"react":"1n8/","react-dom":"NKHc","react-simple-timefield":"93L1","./time_input":"aPBd","./poui_input":"Ar8f"}]},{},["Focm"], null)
+},{"react":"1n8/","react-dom":"NKHc","react-simple-timefield":"93L1","./time_input":"aPBd","./poui_input":"Ar8f","./parto_display":"aKzs"}]},{},["Focm"], null)
