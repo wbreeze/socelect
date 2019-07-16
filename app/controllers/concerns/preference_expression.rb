@@ -15,4 +15,24 @@ module PreferenceExpression
     expression.alternative = alternative
     preference
   end
+
+  def build_parto_preference(choice, parto)
+    rank = next_rank = 1
+    preference = Preference.new(:choice => @choice)
+    parto.each do |aidoa|
+      if aidoa.kind_of? Array
+        aidoa.each do |id|
+          preference.expressions.build(alternative_id: id.to_i, sequence: rank)
+          next_rank += 1
+        end
+      elsif aidoa.kind_of? String
+        preference.expressions.build(alternative_id: aidoa.to_i, sequence: rank)
+        next_rank += 1;
+      else
+        raise ArgumentError.new("Unexpected value #{aidoa} in parto")
+      end
+      rank = next_rank;
+    end
+    preference
+  end
 end

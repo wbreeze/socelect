@@ -15,16 +15,13 @@ class PreferencesController < ApplicationController
     return head :bad_request unless @choice
     if (params[:alternative])
       alternative = @choice.alternatives.find(alternative_param)
+      preference = build_select_alternative_preference(@choice, alternative)
     elsif (choice_params[:parto])
-      parto = choice_params[:parto]
       parto = JSON.parse(choice_params[:parto])
-      first = parto[0]
-      first = first[0] if (first.kind_of? Array)
-      alternative = @choice.alternatives.find(first);
+      preference = build_parto_preference(@choice, parto)
     else
       return head :bad_request
     end
-    preference = build_select_alternative_preference(@choice, alternative)
     derive_chef_to_preference(preference, request)
 
     if preference.save
