@@ -20,6 +20,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'timecop'
