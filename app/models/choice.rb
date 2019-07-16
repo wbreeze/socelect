@@ -20,6 +20,8 @@ class Choice < ApplicationRecord
    accepts_nested_attributes_for :alternatives, allow_destroy: true,
      :reject_if => :all_blank
 
+   has_many :preferences, :dependent=>:destroy
+
    def ensure_two_alternatives
      while alternatives.size < 2 do
        alternatives.build
