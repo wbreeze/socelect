@@ -3,8 +3,10 @@ module ChoiceHelper
     Choice.new(title: title)
   end
 
-  def build_alternatives(choice)
-    titles = ['this is an alternative', 'this is another']
+  def build_alternatives(choice, count=2)
+    titles = Array.new(count).collect do
+      Faker::Book.unique.title
+    end
     titles.each do |title|
       choice.alternatives.build(title: title)
     end
@@ -48,12 +50,15 @@ module ChoiceHelper
     }
   end
 
-  def parto_selection_params(choice, alt_id = nil)
-    alt_id ||= choice.alternatives[rand(choice.alternatives.count)].id
+  def parto_selection_params(choice, parto = nil)
+    unless parto
+      alt_ids = choice.alternatives.collect(&:id).shuffle
+      parto = [alt_ids.collect(&:to_s)]
+    end
     {
       choice: {
         read_token: choice.read_token,
-        parto: [alt_id.to_s, []].to_json
+        parto: parto.to_json
       },
       commit: 'Submit preference',
     }
