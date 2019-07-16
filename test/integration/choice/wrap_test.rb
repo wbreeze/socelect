@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ChoiceWrapTest < ActionDispatch::IntegrationTest
+class WrapTest < ActionDispatch::IntegrationTest
   setup do
     @choice = create_full_choice
     @choice.save!
