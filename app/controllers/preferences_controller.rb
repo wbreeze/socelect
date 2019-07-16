@@ -6,7 +6,7 @@ class PreferencesController < ApplicationController
     @preference = Preference.find_by(token: params[:id])
     return head :not_found unless @preference
     @choice = @preference.choice
-    @alternative = @preference.expression[0].alternative
+    @alternative = @preference.expressions[0].alternative
   end
 
   # POST /preferences/create

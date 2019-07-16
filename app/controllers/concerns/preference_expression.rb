@@ -11,7 +11,7 @@ module PreferenceExpression
 
   def build_select_alternative_preference(choice, alternative)
     preference = Preference.new(:choice => @choice)
-    expression = preference.expression.build(:sequence => 1)
+    expression = preference.expressions.build(:sequence => 1)
     expression.alternative = alternative
     preference
   end

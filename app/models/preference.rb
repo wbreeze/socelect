@@ -3,7 +3,7 @@ class Preference < ApplicationRecord
   TOKEN_LENGTH = 14
 
   belongs_to :choice
-  has_many :expression
+  has_many :expressions
 
   token_column(:token, TOKEN_LENGTH)
 
