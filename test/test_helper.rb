@@ -7,6 +7,13 @@ Dir.glob(
 end
 require 'rails/test_help'
 
+class Minitest::Test
+  def before_setup
+    super
+    Faker::UniqueGenerator.clear
+  end
+end
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
