@@ -9,11 +9,10 @@
     <%= distance_of_time_in_words(now, deadline) %>
   </p>
 <% else %>
-  <%= render :partial => 'result', 
-      :locals => { 
-        :choice => @choice,
-        :alternatives => @alternatives 
-      } %>
+  <div
+    data-parto-display=<%= @parto %>
+    data-parto-items="<%= @choice.parto_encoding.to_json %>"
+  ></div>
 <% end %>
 
 <%= home_button %>

@@ -49,9 +49,9 @@ class ChoicesController < ApplicationController
   def result
     @choice = Choice.find_by(read_token: params[:id])
     return head :not_found unless @choice
-    @alternatives = @choice.alternatives.sort {
-      |x,y| -1 * (x.expressions.count <=> y.expressions.count)
-    }
+    @choice.extend(Choice::PartoCoding)
+    davenport_computer = DavenportComputer.new(@choice)
+    @parto = davenport_computer.result_as_parto
   end
 
   # GET /choices/:id/wrap
