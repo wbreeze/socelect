@@ -3,8 +3,7 @@ require 'test_helper'
 
 class PartoPreferenceTest < ActionDispatch::IntegrationTest
   setup do
-    @choice = create_choice("#{Faker::Book.author} books")
-    build_alternatives(@choice, 12)
+    @choice = create_full_choice({}, 12)
     @choice.save!
   end
 

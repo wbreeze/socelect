@@ -4,9 +4,9 @@ class ValidAlternativesTest < ActiveSupport::TestCase
   test "validate two alternatives" do
     ch = create_choice
     assert_invalid_record(ch, 'two alternatives')
-    ch.alternatives.build(title: 'this is an answer')
+    build_alternatives(ch, 1)
     assert_invalid_record(ch, 'two alternatives')
-    ch.alternatives.build(title: 'this is also an answer')
+    build_alternatives(ch, 1)
     assert(ch.save)
   end
 

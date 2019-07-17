@@ -1,6 +1,10 @@
 module ChoiceHelper
-  def create_choice(title = 'this is a choice?')
-    Choice.new(title: title)
+  def create_choice(attribs={})
+    title = attribs.fetch(:title, nil)
+    title ||= Faker::Book.unique.title
+    description = attribs.fetch(:description, nil)
+    description ||= Faker::Quote.yoda
+    Choice.new(title: title, description: description)
   end
 
   def build_alternatives(choice, count=2)
@@ -8,14 +12,16 @@ module ChoiceHelper
       Faker::Book.unique.title
     end
     titles.each do |title|
-      choice.alternatives.build(title: title)
+      description = Faker::Quote.most_interesting_man_in_the_world
+      alt=choice.alternatives.build(title: title, description: description)
     end
     choice
   end
 
-  def create_full_choice(attribs = { title: 'this is a choice?' })
-    ch = Choice.new(attribs)
-    build_alternatives(ch)
+  def create_full_choice(attribs={}, alt_ct=2)
+    choice = create_choice(attribs)
+    alt_ct = 2 if alt_ct < 2
+    build_alternatives(choice, alt_ct)
   end
 
   def choice_params(choice)
