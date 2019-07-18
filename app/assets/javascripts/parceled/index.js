@@ -1461,9 +1461,11 @@ var PartialOrder = {
   // Returns a new order with groups containing only one item replaced with
   //   the item
   flattenSoloGroups: function flattenSoloGroups(order) {
-    return order.map(function (key) {
+    var flat = order.map(function (key) {
       if (Array.isArray(key)) {
-        if (key.length == 1) {
+        if (key.length == 0) {
+          return null;
+        } else if (key.length == 1) {
           return key[0];
         } else {
           return key;
@@ -1471,6 +1473,9 @@ var PartialOrder = {
       } else {
         return key;
       }
+    });
+    return flat.filter(function (key) {
+      return key != null;
     });
   },
   // Returns a new order arranged according to the given order, with
@@ -1483,7 +1488,7 @@ var PartialOrder = {
     var rest = keys.filter(function (key) {
       return !included.includes(key);
     });
-    return PartialOrder.flattenSoloGroups(cleanOrder).concat([rest]);
+    return PartialOrder.flattenSoloGroups(cleanOrder.concat([rest]));
   },
   // Return a new group with item and given index removed
   shallowRemoveItem: function shallowRemoveItem(group, index) {
@@ -2243,11 +2248,12 @@ function withInput(Wrapped) {
       _classCallCheck(this, WithInput);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(WithInput).call(this, props));
+
+      _defineProperty(_assertThisInitialized(_this), "state", {
+        ordering: _this.props.parto
+      });
+
       _this.updateOrdering = _this.updateOrdering.bind(_assertThisInitialized(_this));
-      var ordering = props.parto;
-      _this.state = {
-        ordering: _poui.PartialOrder.encompassItems(props.itemList, ordering)
-      };
       return _this;
     }
 
