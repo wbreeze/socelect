@@ -14,13 +14,13 @@ function withInput(Wrapped) {
       inputClass: PropTypes.string
     }
 
+    state = {
+      ordering: this.props.parto
+    }
+
     constructor(props) {
       super(props);
       this.updateOrdering = this.updateOrdering.bind(this);
-      const ordering = props.parto;
-      this.state = {
-        ordering: PartialOrder.encompassItems(props.itemList, ordering),
-      };
     }
 
     updateOrdering(updatedOrdering) {
