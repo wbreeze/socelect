@@ -13,12 +13,12 @@
   border: 1.5pt solid black;
   border-radius: 1ex;
   background: radial-gradient(#9ac4e0, #abd5f1);
-  cursor: pointer;
 }
 
-.poui-parto-item:hover {
+.poui-input .poui-parto-item:hover {
   border-color: #666;
   background: radial-gradient(#6390b9, #74a1ca);
+  cursor: pointer;
 }
 
 .poui-dragtarget-before {
