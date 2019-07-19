@@ -8,7 +8,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "clean": "rm -rf app/assets/javascripts/parceled",
-    "build": "yarn run clean && parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-source-maps --no-content-hash --no-minify",
+    "build": "yarn run clean && NODE_ENV='production' parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-source-maps --no-content-hash",
     "serve": "parcel src/index.html",
     "watch": "yarn run clean && parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
   },
