@@ -7,5 +7,7 @@
 <%= render :partial => 'form' %>
 
 <div class="actions">
-  <%= link_to 'Cancel', wrap_choice_path(@choice.edit_token) %>
+  <%= button_to 'Cancel',
+    wrap_choice_path(@choice.edit_token),
+    :method => :get %>
 </div>
