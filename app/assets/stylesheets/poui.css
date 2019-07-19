@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.poui-parto-ol {
+  width: max-content;
+}
+
 .poui-parto-item {
   margin-top: 0.5ex;
   margin-bottom: 0.5ex;
