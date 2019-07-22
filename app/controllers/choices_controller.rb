@@ -65,6 +65,7 @@ class ChoicesController < ApplicationController
       :title, :description,
       :opening_date, :opening_time,
       :deadline_date, :deadline_time,
+      :intermediate,
       alternatives_attributes: [ :id, :title, :description, :_destroy ]
     )
   end

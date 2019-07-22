@@ -18,6 +18,12 @@
       locals: { form: f, field: 'deadline', value: @choice.deadline } %>
   </div>
 
+  <h3>Options</h3>
+  <div id='options'>
+    <%= f.check_box :intermediate %>
+    <%= f.label :intermediate, 'Show intermediate result' %>
+  </div>
+
   <div class="actions">
     <%= f.submit 'Publish' %>
   </div>

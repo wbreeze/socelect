@@ -1,10 +1,11 @@
 module ChoiceHelper
   def create_choice(attribs={})
-    title = attribs.fetch(:title, nil)
-    title ||= Faker::Book.unique.title
-    description = attribs.fetch(:description, nil)
-    description ||= Faker::Quote.yoda
-    Choice.new(title: title, description: description)
+    title = attribs.fetch(:title, nil) || Faker::Book.unique.title
+    description = attribs.fetch(:description, nil) || Faker::Quote.yoda
+    intermediate = attribs.fetch(:intermediate, false)
+    Choice.new(
+      title: title, description: description, intermediate: intermediate
+    )
   end
 
   def build_alternatives(choice, count=2)
@@ -35,6 +36,7 @@ module ChoiceHelper
         deadline_time: choice.deadline.to_time,
         edit_token: choice.edit_token,
         read_token: choice.read_token,
+        intermediate: choice.intermediate,
         alternatives_attributes: choice.alternatives.collect do |alt|
           {
             title: alt.title,
