@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_190020) do
+ActiveRecord::Schema.define(version: 2019_07_22_175628) do
 
   create_table "alternatives", force: :cascade do |t|
     t.string "title", limit: 256, null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_06_15_190020) do
     t.datetime "updated_at"
     t.string "read_token", limit: 32
     t.string "edit_token", limit: 32
+    t.boolean "intermediate", default: false, null: false
     t.index ["edit_token"], name: "index_choices_on_edit_token", unique: true
     t.index ["read_token"], name: "index_choices_on_read_token", unique: true
   end
