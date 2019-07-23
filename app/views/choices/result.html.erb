@@ -18,7 +18,7 @@
   <% end %>
 </p>
 
-<% if deadline < now || @choice.intermediate %>
+<% if deadline <= now || @choice.intermediate %>
   <div
     data-parto-display=<%= @parto %>
     data-parto-items="<%= @choice.parto_items_encoding %>"

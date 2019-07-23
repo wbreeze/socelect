@@ -21,7 +21,7 @@ class Choice::ResultTest < ActionDispatch::IntegrationTest
   end
 
   test 'displays closed when closing time has passed' do
-    travel_to(@choice.deadline + 1.second) do
+    travel_to(@choice.deadline) do
       get result_choice_path(id: @choice.read_token)
       assert_response :success
       assert_select('p', /This choice has closed to further responses/)
