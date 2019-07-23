@@ -3,8 +3,10 @@ module ChoiceHelper
     title = attribs.fetch(:title, nil) || Faker::Book.unique.title
     description = attribs.fetch(:description, nil) || Faker::Quote.yoda
     intermediate = attribs.fetch(:intermediate, false)
+    public = attribs.fetch(:public, false)
     Choice.new(
-      title: title, description: description, intermediate: intermediate
+      title: title, description: description, intermediate: intermediate,
+      public: public
     )
   end
 
@@ -37,6 +39,7 @@ module ChoiceHelper
         edit_token: choice.edit_token,
         read_token: choice.read_token,
         intermediate: choice.intermediate,
+        public: choice.public,
         alternatives_attributes: choice.alternatives.collect do |alt|
           {
             title: alt.title,

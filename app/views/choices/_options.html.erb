@@ -6,4 +6,11 @@
       Results hidden until choice closes
     <% end %>
   </li>
+  <li>
+    <% if @choice.public %>
+      Will show publicly
+    <% else %>
+      Not shown publicly
+    <% end %>
+  </li>
 </ul>

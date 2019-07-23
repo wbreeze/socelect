@@ -19,10 +19,16 @@
   </div>
 
   <h3>Options</h3>
-  <div id='options'>
-    <%= f.check_box :intermediate %>
-    <%= f.label :intermediate, 'Show intermediate result' %>
-  </div>
+  <ul id='options', class="option-list">
+    <li>
+      <%= f.check_box :intermediate %>
+      <%= f.label :intermediate, 'Show intermediate result' %>
+    </li>
+    <li>
+      <%= f.check_box :public %>
+      <%= f.label :public, 'Show publicly on main page' %>
+    </li>
+  </ul>
 
   <div class="actions">
     <%= f.submit 'Publish' %>
