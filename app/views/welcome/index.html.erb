@@ -21,3 +21,10 @@ is preferred over the other by the majority.
 This is an expectation that many people
 assume from any method, but which most methods, including choose-one,
 do not deliver.</p>
+
+<% if 0 < @choices.count %>
+  <p>Some publicly shared choices that you can try out:</p>
+  <ul id="public-choices">
+    <%= render @choices %>
+  </ul>
+<% end %>

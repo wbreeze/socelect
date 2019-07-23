@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
+  CHOICE_LIMIT = 12
+
   def index
+    @choices = Choice.where(public: true).order(:deadline).limit(CHOICE_LIMIT)
   end
 
   def page_view
