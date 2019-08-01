@@ -12,6 +12,7 @@ class ChoicesController < ApplicationController
   # GET /choices/new
   def new
     @choice = Choice.new
+    @choice.extend(Choice::EnsureAlternatives)
     @choice.ensure_two_alternatives
   end
 
