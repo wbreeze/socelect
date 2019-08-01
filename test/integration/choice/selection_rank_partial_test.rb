@@ -10,16 +10,6 @@ class SelectionRankPartialTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "has choice identified" do
-    assert_select("input[name='choice[read_token]']") do
-      assert_select("input[value='#{@choice.read_token}']");
-    end
-  end
-
-  test "has stem" do
-    assert_select('div[class="choiceTitle"]', @choice.title)
-  end
-
   test "has parto input" do
     assert_select('div[data-poui-field="choice[parto]"]')
   end
