@@ -8,14 +8,14 @@
 <p>
   <% if now < deadline %>
     <% if @choice.intermediate %>
-      Intermediate results. This choice will close in
+      Intermediate results. This choice will close
     <% else %>
-      Results of this choice will become available in
+      Results of this choice will become available
     <% end %>
-    <%= distance_of_time_in_words(now, deadline) %>
   <% else %>
-    This choice has closed to further responses.
+    This choice closed to further responses
   <% end %>
+  <%= datetime_full_display(@choice.deadline) %>
 </p>
 
 <% if deadline <= now || @choice.intermediate %>
