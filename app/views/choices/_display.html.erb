@@ -1,4 +1,5 @@
 <%= render :partial => 'choices/title' %>
+<%= render :partial => 'choices/options' %>
 <div class="alternatives">
   <% @choice.alternatives.each do |alt| %>
     <div class="alternative">
@@ -11,4 +12,3 @@
     </div>
   <% end %>
 </div>
-<%= render :partial => 'choices/options' %>
