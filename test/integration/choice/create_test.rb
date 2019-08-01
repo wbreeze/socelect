@@ -48,4 +48,24 @@ class Choice::CreateTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'li', 'Not shown publicly'
   end
+
+  test 'records selected opening date and time' do
+    choice = create_full_choice
+    # TODO set an opening date
+    # TODO ensure choice_params codes the opening date params properly
+    post choices_path(params: choice_params(choice))
+    assert_response :redirect
+    follow_redirect!
+    puts "PAGE #{@response.body}"
+    fail 'look for opening date match'
+  end
+
+  test 'records selected deadline date and time' do
+    choice = create_full_choice
+    # TODO set a deadline date
+    post choices_path(params: choice_params(choice))
+    assert_response :redirect
+    follow_redirect!
+    fail 'look for deadline match'
+  end
 end
