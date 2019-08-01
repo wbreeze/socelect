@@ -1,5 +1,11 @@
 <ul>
   <li>
+    <%= datetime_full_display(@choice.opening, 'Opens', 'Opened') %>
+  </li>
+  <li>
+    <%= datetime_full_display(@choice.deadline, 'Closes', 'Closed') %>
+  </li>
+  <li>
     <% if @choice.intermediate %>
       Will show intermediate results
     <% else %>
