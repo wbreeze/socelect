@@ -1,7 +1,7 @@
 <li>
   <%= link_to choice.title, choice_url(id: choice.read_token) %>:
   <span class="description"><%= choice.description %></span>
-  <span class="closing">(Closes in
-    <%= distance_of_time_in_words(Time.now, choice.deadline) %>)
+  <span class="closing">
+    (<%= datetime_full_display(choice.deadline, 'Closes', 'Closed') %>)
   </span>
 </li>

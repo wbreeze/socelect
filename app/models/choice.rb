@@ -22,12 +22,6 @@ class Choice < ApplicationRecord
 
    has_many :preferences, :dependent=>:destroy
 
-   def ensure_two_alternatives
-     while alternatives.size < 2 do
-       alternatives.build
-     end
-   end
-
    def ensure_default_dates
      self.opening ||= DateTime.current
      self.opening_date = self.opening.to_date

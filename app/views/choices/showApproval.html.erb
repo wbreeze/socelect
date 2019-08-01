@@ -4,21 +4,21 @@
 
 <% now = Time.now %>
 <% if now < @choice.opening %>
-  <p>This choice will open for selection in 
-    <%= distance_of_time_in_words(now, @choice.opening) %>
+  <p>This choice will open for selection
+    <%= datetime_full_display(@choice.opening) %>.
   </p>
 <% elsif now < @choice.deadline %>
-  <%= render :partial => 'selectionApproval', 
+  <%= render :partial => 'selectionApproval',
       :locals => { 
         :choice => @choice,
         :expression => @expression 
       } %>
-  <p>Express your preference within the next
-    <%= distance_of_time_in_words(now, @choice.deadline) %>.
+  <p>Express your preference before
+    <%= datetime_full_display(@choice.deadline) %>.
   </p>
 <% else %>
   <p>This choice closed for selection
-  <%= distance_of_time_in_words(now, @choice.deadline) %> ago.
+  <%= datetime_full_display(@choice.deadline) %>.
   </p>
   <div class="para">
   <a class="displayLink" href="<%= result_choice_path %>">Click here to
