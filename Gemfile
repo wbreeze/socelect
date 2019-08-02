@@ -24,7 +24,6 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
-  gem 'timecop'
 end
 
 group :development, :test do
