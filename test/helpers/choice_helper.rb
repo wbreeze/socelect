@@ -28,14 +28,15 @@ module ChoiceHelper
   end
 
   def choice_params(choice)
+    choice.populate_dates_and_times
     {
       choice: {
         title: choice.title,
         description: choice.description,
-        opening_date: choice.opening.to_date,
-        opening_time: choice.opening.to_time,
-        deadline_date: choice.deadline.to_date,
-        deadline_time: choice.deadline.to_time,
+        opening_date: choice.opening_date,
+        opening_time: choice.opening_time,
+        deadline_date: choice.deadline_date,
+        deadline_time: choice.deadline_time,
         edit_token: choice.edit_token,
         read_token: choice.read_token,
         intermediate: choice.intermediate,

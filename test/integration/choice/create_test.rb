@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class Choice::CreateTest < ActionDispatch::IntegrationTest
+  include DateTimeDisplayHelper
+
   test 'records opt-in for show intermediate results' do
     get new_choice_path
     assert_response :success
@@ -51,21 +53,19 @@ class Choice::CreateTest < ActionDispatch::IntegrationTest
 
   test 'records selected opening date and time' do
     choice = create_full_choice
-    # TODO set an opening date
-    # TODO ensure choice_params codes the opening date params properly
+    choice.opening = Time.now - 3.days - 2.hours
     post choices_path(params: choice_params(choice))
     assert_response :redirect
     follow_redirect!
-    puts "PAGE #{@response.body}"
-    fail 'look for opening date match'
+    assert_match(datetime_full_display(choice.opening), @response.body)
   end
 
   test 'records selected deadline date and time' do
     choice = create_full_choice
-    # TODO set a deadline date
+    choice.deadline = Time.now + 1.week + 6.hours
     post choices_path(params: choice_params(choice))
     assert_response :redirect
     follow_redirect!
-    fail 'look for deadline match'
+    assert_match(datetime_full_display(choice.deadline), @response.body)
   end
 end

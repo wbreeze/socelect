@@ -7,12 +7,36 @@ class Choice < ApplicationRecord
 
    attr_accessor :opening_date, :opening_time, :deadline_date, :deadline_time
 
+   def time_str(time)
+     time.strftime('%H:%M')
+   end
+
+   def date_str(date)
+     date.strftime('%Y-%m-%d')
+   end
+
+   def opening_date
+     @opening_date ||= date_str(Time.now.utc)
+   end
+
+   def opening_time
+     @opening_time ||= time_str(Time.now.utc)
+   end
+
+   def deadline_date
+     @deadline_date ||= date_str((Time.now + 1.day).utc)
+   end
+
+   def deadline_time
+     @deadline_time ||= time_str(Time.now.utc)
+   end
+
    validate :valid_title_and_description_lengths, :valid_alternative_count
    #apply_simple_captcha
    #validate :is_captcha_valid?, :only => [:new, :edit]
    validates_associated :alternatives
-   after_initialize :ensure_default_dates
-   before_validation :resolve_dates
+   after_find :populate_dates_and_times
+   after_initialize :resolve_dates
    token_column(:read_token, TOKEN_LENGTH)
    token_column(:edit_token, TOKEN_LENGTH)
 
@@ -22,24 +46,24 @@ class Choice < ApplicationRecord
 
    has_many :preferences, :dependent=>:destroy
 
-   def ensure_default_dates
-     self.opening ||= DateTime.current
-     self.opening_date = self.opening.to_date
-     self.opening_time = self.opening.to_time
-     self.deadline ||= 1.day.from_now
-     self.deadline_date = self.deadline.to_date
-     self.deadline_time = self.deadline.to_time
+   def populate_dates_and_times
+     self.opening_date = date_str(self.opening)
+     self.opening_time = time_str(self.opening)
+     self.deadline_date = date_str(self.deadline)
+     self.deadline_time = time_str(self.deadline)
    end
 
    def resolve_date_and_time(date_str, time_str)
      dd = date_str.to_datetime
-     dt = time_str.to_datetime.utc
-     DateTime.new(dd.year, dd.month, dd.day, dt.hour, dt.min, dt.sec)
+     dt = time_str.to_datetime
+     DateTime.new(dd.year, dd.month, dd.day, dt.hour, dt.min)
    end
 
    def resolve_dates
-     self.opening = resolve_date_and_time(opening_date, opening_time)
-     self.deadline = resolve_date_and_time(deadline_date, deadline_time)
+     self.opening ||= resolve_date_and_time(
+       self.opening_date, self.opening_time)
+     self.deadline ||= resolve_date_and_time(
+       self.deadline_date, self.deadline_time)
    end
 
    def valid_alternative_count
