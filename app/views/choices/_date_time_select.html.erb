@@ -10,7 +10,7 @@
     <span
       data-time-field="<%= "choice_#{id}" %>"
       data-time-name="<%= "choice[#{id}]" %>"
-      data-time-value="05:15"
+      data-time-value="<%= @choice.send(id) %>"
       class="time_entry"
     />
   </div>
