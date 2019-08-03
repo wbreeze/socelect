@@ -1,4 +1,4 @@
-<h1>Your selection</h1>
+<h1><%= @choice.title %></h1>
 
 <p>You selected:
   <div
@@ -9,12 +9,13 @@
 
 <p>The link for viewing the result is:</p>
 <p>
-  <%= link_to("View result of choice, #{@choice.title}",
+  <%= link_to("Result: #{@choice.title}",
     result_choice_path(@choice.read_token), class: 'displayLink')
   %>
 </p>
 <p>Bookmark the link if you like, to save it.</p>
 
-<%= render :partial => 'choices/display', :object => @choice %>
+<%= render :partial => 'choices/title' %>
+<%= render :partial => 'choices/alternatives' %>
 
 <%= home_button %>
