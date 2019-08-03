@@ -18,6 +18,7 @@
         :choice => @choice,
         :expression => @expression 
       } %>
+  <%= render :partial => 'choices/alternatives' %>
 <% else %>
   <p>This choice closed for selection
     <%= datetime_full_display(deadline) %>.

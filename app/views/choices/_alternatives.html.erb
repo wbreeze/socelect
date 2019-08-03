@@ -1,0 +1,12 @@
+<div class="alternatives">
+  <% @choice.alternatives.each do |alt| %>
+    <div class="alternative">
+      <div class="alternativeTitle">
+        <%= alt.title %>
+      </div>
+      <div class="alternativeDescription">
+        <%= alt.description %>
+      </div>
+    </div>
+  <% end %>
+</div>
