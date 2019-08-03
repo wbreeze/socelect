@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class BrowsingTest < ActionDispatch::IntegrationTest
-    PUBLIC_COUNT = 7
-    PRIVATE_COUNT = 4
+  PUBLIC_COUNT = 7
+  PRIVATE_COUNT = 4
 
   setup do
     @public_choices = []
@@ -55,6 +55,26 @@ class BrowsingTest < ActionDispatch::IntegrationTest
     assert_equal(0, sels.count)
 
     sels = css_select(/Some publicly shared choices/)
+    assert_equal(0, sels.count)
+  end
+
+  test 'home page shows result link on open choice with intermediate set' do
+    choice = @public_choices.first
+    choice.intermediate = true
+    choice.save!
+    get root_path
+
+    assert_select('li', /#{choice.title}/)
+    assert_select("a[href='#{result_choice_url(id: choice.read_token)}']")
+  end
+
+  test 'public choices shown does not include closed choices' do
+    choice = @public_choices.first
+    choice.deadline = Time.now
+    choice.save!
+    get root_path
+
+    sels = css_select(/#{choice.title}/)
     assert_equal(0, sels.count)
   end
 end
