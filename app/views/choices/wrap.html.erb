@@ -1,5 +1,7 @@
 <h1>Your Question is Ready</h1>
 
+Be sure to bookmark this page so that you can find these links again.
+
 <div class="para">The link to share for expressing preferences is:</div>
 <div>
   <a class="displayLink" href="<%= choice_path(@choice.read_token) %>"
@@ -11,14 +13,13 @@ copy to your clipboard in order to
 paste the link elsewhere, to publish.
 </div>
 
-<div class="para">The link for viewing the result will be:</div>
+<div class="para">The link for viewing the result is:</div>
 <div>
 <a class="displayLink" href="<%= result_choice_path(@choice.read_token) %>"
 >Result: <%= @choice.title %></a>
 </div>
 
-<div class="para">To edit your choice before anyone has expressed a preference,
-go to:</div>
+<div class="para">The link to edit your question is:</div>
 <div>
 <a class="displayLink" href="<%= edit_choice_path(@choice.edit_token) %>"
 >Edit: <%= @choice.title %></a>
