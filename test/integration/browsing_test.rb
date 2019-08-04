@@ -20,34 +20,31 @@ class BrowsingTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'visit home page' do
+  test 'visit' do
     get root_path
     assert_response :success
   end
 
-  test 'home page shows public choices' do
+  test 'shows public choices' do
     get root_path
 
     assert_select('ul#public-choices')
     assert_select('body', /Some publicly shared choices/)
     @public_choices.each do |choice|
-      assert_select('li', /#{choice.title}/)
       assert_select("a[href='#{choice_url(id: choice.read_token)}']")
     end
   end
 
-  test 'home page does not show private choices' do
+  test 'does not show private choices' do
     get root_path
 
     @private_choices.each do |choice|
-      sels = css_select(/#{choice.title}/)
-      assert_equal(0, sels.count)
       sels = css_select("a[href='#{choice_url(id: choice.read_token)}']")
       assert_equal(0, sels.count)
     end
   end
 
-  test 'home page does not offer list when no open, public choices' do
+  test 'does not offer list when no open, public choices' do
     Choice.update_all(public: false)
     get root_path
 
@@ -58,23 +55,40 @@ class BrowsingTest < ActionDispatch::IntegrationTest
     assert_equal(0, sels.count)
   end
 
-  test 'home page shows result link on open choice with intermediate set' do
+  test 'shows result link on open choice with intermediate set' do
     choice = @public_choices.first
     choice.intermediate = true
     choice.save!
     get root_path
 
-    assert_select('li', /#{choice.title}/)
     assert_select("a[href='#{result_choice_url(id: choice.read_token)}']")
   end
 
-  test 'public choices shown does not include closed choices' do
+  test 'does not show result link on open choice unless intermediate set' do
+    get root_path
+
     choice = @public_choices.first
-    choice.deadline = Time.now
+    assert_select('ul#public-choices') do |elements|
+      elements.each do |el|
+        query = (".//a[@href='#{result_choice_url(id: choice.read_token)}']")
+        sels = el.xpath(query)
+        assert_equal(0, sels.count)
+      end
+    end
+  end
+
+  test 'does not include closed choices in public choices' do
+    choice = @public_choices.first
+    choice.deadline = Time.now - 1.minute
     choice.save!
     get root_path
 
-    sels = css_select(/#{choice.title}/)
-    assert_equal(0, sels.count)
+    assert_select('ul#public-choices') do |elements|
+      elements.each do |el|
+        query = (".//a[@href='#{result_choice_url(id: choice.read_token)}']")
+        sels = el.xpath(query)
+        assert_equal(0, sels.count)
+      end
+    end
   end
 end

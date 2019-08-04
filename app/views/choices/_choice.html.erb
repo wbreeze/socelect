@@ -4,7 +4,9 @@
   <span class="closing">
     (<%= datetime_full_display(choice.deadline, 'Closes', 'Closed') %>)
   </span>
+  <% if choice.intermediate %>
     <span class="result-link"><%=
       link_to 'Intermediate result', result_choice_url(id: choice.read_token)
     %></span>
+  <% end %>
 </li>
