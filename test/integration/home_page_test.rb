@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BrowsingTest < ActionDispatch::IntegrationTest
+class HomePageTest < ActionDispatch::IntegrationTest
   PUBLIC_COUNT = 7
   PRIVATE_COUNT = 4
 
