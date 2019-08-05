@@ -4252,9 +4252,9 @@ posthtml@^0.11.2, posthtml@^0.11.3:
     posthtml-render "^1.1.5"
 
 poui@^1.0.4:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/poui/-/poui-1.2.2.tgz#d30ee9c0d6a95dbb88208b76f94368aa84505fea"
-  integrity sha512-pmWB6+n5VFflvN3JqDANZP4U8Gj+kGtXFyafEWouA1Ar9hEYRG3JzqJ3fu24jyallntHq2hMCHO/2/jyY8mfLg==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/poui/-/poui-1.3.1.tgz#d210d9639f061b3f17a07d7d9d687569d99240ae"
+  integrity sha512-E9GBNjBB5lxAvkRwGC+iYLdXuaznPGcn9WpETcRkxv/dACh0nohDkM4aIjWWX+dUh3RIRSJ/qOskoYBz24iD5A==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
