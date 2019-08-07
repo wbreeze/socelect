@@ -19,6 +19,7 @@ class ChoicesController < ApplicationController
   # GET /choices/1/edit
   def edit
     @choice = Choice.find_by(edit_token: params[:id])
+    @choice.extend(Choice::Edit)
     head :not_found unless @choice
   end
 
@@ -34,9 +35,8 @@ class ChoicesController < ApplicationController
 
   # PUT /choices/1
   def update
-    @choice = Choice.find_by(id: params[:id])
-    cparms = params[:choice]
-    unless cparms && @choice && cparms[:edit_token] == @choice.edit_token
+    @choice = Choice.find_by(edit_token: params[:id])
+    unless @choice
       return head :bad_request
     end
     if @choice.update(choice_params)
