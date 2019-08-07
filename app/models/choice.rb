@@ -7,28 +7,28 @@ class Choice < ApplicationRecord
 
    attr_accessor :opening_date, :opening_time, :deadline_date, :deadline_time
 
-   def time_str(time)
+   def self.time_str(time)
      time.strftime('%H:%M')
    end
 
-   def date_str(date)
+   def self.date_str(date)
      date.strftime('%Y-%m-%d')
    end
 
    def opening_date
-     @opening_date ||= date_str(Time.now.utc)
+     @opening_date ||= self.class.date_str(Time.now.utc)
    end
 
    def opening_time
-     @opening_time ||= time_str(Time.now.utc)
+     @opening_time ||= self.class.time_str(Time.now.utc)
    end
 
    def deadline_date
-     @deadline_date ||= date_str((Time.now + 1.day).utc)
+     @deadline_date ||= self.class.date_str((Time.now + 1.day).utc)
    end
 
    def deadline_time
-     @deadline_time ||= time_str(Time.now.utc)
+     @deadline_time ||= self.class.time_str(Time.now.utc)
    end
 
    validate :valid_title_and_description_lengths, :valid_alternative_count
@@ -47,10 +47,10 @@ class Choice < ApplicationRecord
    has_many :preferences, :dependent=>:destroy
 
    def populate_dates_and_times
-     self.opening_date = date_str(self.opening)
-     self.opening_time = time_str(self.opening)
-     self.deadline_date = date_str(self.deadline)
-     self.deadline_time = time_str(self.deadline)
+     self.opening_date = self.class.date_str(self.opening)
+     self.opening_time = self.class.time_str(self.opening)
+     self.deadline_date = self.class.date_str(self.deadline)
+     self.deadline_time = self.class.time_str(self.deadline)
    end
 
    def resolve_date_and_time(date_str, time_str)
