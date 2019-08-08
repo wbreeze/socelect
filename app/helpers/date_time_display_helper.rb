@@ -1,6 +1,14 @@
 module DateTimeDisplayHelper
   include ActionView::Helpers::DateHelper
 
+  def time_str(time)
+   time.strftime('%H:%M')
+  end
+
+  def date_str(date)
+   date.strftime('%Y-%m-%d')
+  end
+
   def datetime_formatted(datetime)
     datetime.strftime('%a, %-d %b %Y, %H:%M %Z')
   end

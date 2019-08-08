@@ -11,21 +11,18 @@ class ChoicesController < ApplicationController
 
   # GET /choices/new
   def new
-    @choice = Choice.new
-    @choice.extend(Choice::EnsureAlternatives)
-    @choice.ensure_two_alternatives
+    @choice = Choice::EnsureAlternatives.new
   end
 
   # GET /choices/1/edit
   def edit
-    @choice = Choice.find_by(edit_token: params[:id])
-    @choice.extend(Choice::Edit)
+    @choice = Choice::Edit.find_by(edit_token: params[:id])
     head :not_found unless @choice
   end
 
   # POST /choices
   def create
-    @choice = Choice.new(choice_params)
+    @choice = Choice::Edit.new(choice_params)
     if @choice.save
       redirect_to wrap_choice_path(@choice.edit_token)
     else
@@ -35,7 +32,7 @@ class ChoicesController < ApplicationController
 
   # PUT /choices/1
   def update
-    @choice = Choice.find_by(edit_token: params[:id])
+    @choice = Choice::Edit.find_by(edit_token: params[:id])
     unless @choice
       return head :bad_request
     end

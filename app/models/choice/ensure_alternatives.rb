@@ -1,9 +1,9 @@
-# Used  by ChoicesController#new to set-up initial, blank alternatives
+# Used  by ChoicesController#new (only!) to set-up initial, blank alternatives
 
-module Choice::EnsureAlternatives
-  def ensure_two_alternatives
-    while alternatives.size < 2 do
-      alternatives.build
+class Choice::EnsureAlternatives < Choice::Edit
+  after_initialize do |choice|
+    while choice.alternatives.size < 2 do
+      choice.alternatives.build
     end
   end
 end

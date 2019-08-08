@@ -2,16 +2,14 @@
 
 <%= render :partial => 'title' %>
 
-<% now = Time.now %>
-<% opening = @choice.opening || now %>
-<% deadline = @choice.deadline || now %>
-<% if now < opening %>
+<% now = Time.now.utc.beginning_of_minute %>
+<% if now < @choice.opening %>
   <p>This choice will open for selection
-    <%= datetime_full_display(opening) %>
+    <%= datetime_full_display(@choice.opening) %>
   </p>
-<% elsif now < deadline %>
+<% elsif now < @choice.deadline %>
   <p>Express your preference before
-    <%= datetime_full_display(deadline) %>.
+    <%= datetime_full_display(@choice.deadline) %>.
   </p>
   <%= render :partial => 'selection', 
       :locals => { 
@@ -21,7 +19,7 @@
   <%= render :partial => 'choices/alternatives' %>
 <% else %>
   <p>This choice closed for selection
-    <%= datetime_full_display(deadline) %>.
+    <%= datetime_full_display(@choice.deadline) %>.
   </p>
 <div class="para">
 <a class="displayLink" href="<%= result_choice_path %>">Click here to
