@@ -1,22 +1,20 @@
 module ChoiceHelper
+  include DateTimeDisplayHelper
+
   def create_choice(attribs={})
-    title = attribs.fetch(:title, nil) || Faker::Book.unique.title
-    description = attribs.fetch(:description, nil) || Faker::Quote.yoda
-    intermediate = attribs.fetch(:intermediate, false)
-    public = attribs.fetch(:public, false)
-    Choice.new(
-      title: title, description: description, intermediate: intermediate,
-      public: public
-    )
+    opening = Time.now.utc.beginning_of_minute
+    choice_attrs = choice_params(attribs).merge({
+      opening: opening,
+      deadline: opening + 1.day
+    }).reject do |key|
+      %i[opening_date opening_time deadline_date deadline_time].include?(key)
+    end
+    Choice.new(choice_attrs)
   end
 
-  def build_alternatives(choice, count=2)
-    titles = Array.new(count).collect do
-      Faker::Book.unique.title
-    end
-    titles.each do |title|
-      description = Faker::Quote.most_interesting_man_in_the_world
-      alt=choice.alternatives.build(title: title, description: description)
+  def build_alternatives(choice, alt_ct=2)
+    alt_ct.times do
+      choice.alternatives.build(alternative_params)
     end
     choice
   end
@@ -27,28 +25,34 @@ module ChoiceHelper
     build_alternatives(choice, alt_ct)
   end
 
-  def choice_params(choice)
-    choice.populate_dates_and_times
+  def alternative_params
     {
-      choice: {
-        title: choice.title,
-        description: choice.description,
-        opening_date: choice.opening_date,
-        opening_time: choice.opening_time,
-        deadline_date: choice.deadline_date,
-        deadline_time: choice.deadline_time,
-        edit_token: choice.edit_token,
-        read_token: choice.read_token,
-        intermediate: choice.intermediate,
-        public: choice.public,
-        alternatives_attributes: choice.alternatives.collect do |alt|
-          {
-            title: alt.title,
-            description: alt.description
-          }
-        end
-      }
+      title: Faker::Book.unique.title,
+      description: Faker::Quote.most_interesting_man_in_the_world
     }
+  end
+
+  def choice_params_with_alternatives_attributes(choice_attrs = {}, alt_ct = 2)
+    attrs = choice_params.merge(choice_attrs)
+    attrs[:alternatives_attributes] = alt_ct.times.collect do
+      alternative_params
+    end
+    attrs
+  end
+
+  def choice_params(attrs = {})
+    opening = Time.now.utc
+    deadline = opening + 1.day
+    {
+      title: Faker::Book.unique.title,
+      description: Faker::Quote.yoda,
+      opening_date: date_str(opening),
+      opening_time: time_str(opening),
+      deadline_date: date_str(deadline),
+      deadline_time: time_str(deadline),
+      intermediate: false,
+      public: false
+    }.merge(attrs)
   end
 
   def selection_params(choice, alt_id = nil)
