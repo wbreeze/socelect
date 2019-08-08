@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~>5.2.0'
 gem 'bootsnap'
 gem 'davenport'
+gem 'active_type'
 
 group :assets do
   gem 'uglifier'
