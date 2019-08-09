@@ -12,13 +12,13 @@ class CreateQuestionsTest < ApplicationSystemTestCase
   end
 
   test "create a question" do
-    title = 'Question title'
-    description = 'Question description'
-    alt_titles = ['alternative one title', 'alternative two title']
-    alt_descriptions = [
-      'alternative one description',
-      'alternative two description'
-    ]
+    title = Faker::Book.title
+    description = Faker::Quote.yoda
+    alt_ct = 2
+    alt_titles = alt_ct.times.collect { Faker::Book.unique.title }
+    alt_descriptions = alt_ct.times.collect do
+      Faker::Quote.most_interesting_man_in_the_world
+    end
 
     visit new_choice_path
     within('form.new_choice') do
