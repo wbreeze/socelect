@@ -17,8 +17,8 @@ class Choice::Edit < ActiveType::Record[Choice]
     ) unless opening + 1.minute < deadline
   end
 
-  # override id to be the edit token, so as not to expose it
-  def id
+  # override to_param to be the edit token, so as not to expose the id
+  def to_param
     edit_token
   end
 

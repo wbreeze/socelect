@@ -47,8 +47,7 @@ class ChoicesControllerTest < ActionController::TestCase
 
     patch_params[:id] = choice.id
     patch :update, params: patch_params
-    assert_response :redirect
-    assert_redirected_to wrap_choice_path(choice.edit_token)
+    assert_response :bad_request
 
     patch_params[:id] = choice.to_param
     patch :update, params: patch_params

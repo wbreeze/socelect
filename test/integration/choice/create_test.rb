@@ -3,6 +3,22 @@ require 'test_helper'
 class Choice::CreateTest < ActionDispatch::IntegrationTest
   include DateTimeDisplayHelper
 
+  test 'creates new choice and alternatives' do
+    params = choice_params_with_alternatives_attributes
+    post choices_path, params: { choice: params }
+    assert_response :redirect
+    follow_redirect!
+
+    assert_select 'div.choiceTitle', params[:title]
+    assert_select 'div.choiceDescription', params[:description]
+    assert_select 'div.alternatives' do
+      params[:alternatives_attributes].each do |alt|
+        assert_select 'div.alternativeTitle', alt[:title]
+        assert_select 'div.alternativeDescription', alt[:description]
+      end
+    end
+  end
+
   test 'contains opt-in for show intermediate results' do
     get new_choice_path
     assert_response :success
