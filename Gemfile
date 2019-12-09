@@ -4,6 +4,7 @@ gem 'rails', '~>5.2.0'
 gem 'bootsnap'
 gem 'davenport'
 gem 'active_type'
+gem 'delayed_job_active_record'
 
 group :assets do
   gem 'uglifier'
