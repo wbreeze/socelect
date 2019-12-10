@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_23_012146) do
+ActiveRecord::Schema.define(version: 2019_12_10_183403) do
 
   create_table "alternatives", force: :cascade do |t|
     t.string "title", limit: 256, null: false
@@ -31,10 +31,28 @@ ActiveRecord::Schema.define(version: 2019_07_23_012146) do
     t.string "edit_token", limit: 32
     t.boolean "intermediate", default: false, null: false
     t.boolean "public", default: false, null: false
+    t.integer "result_state"
+    t.text "result_parto"
     t.index ["deadline"], name: "index_choices_on_deadline"
     t.index ["edit_token"], name: "index_choices_on_edit_token", unique: true
     t.index ["public"], name: "index_choices_on_public"
     t.index ["read_token"], name: "index_choices_on_read_token", unique: true
+    t.index ["result_state"], name: "index_choices_on_result_state"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "expressions", force: :cascade do |t|
