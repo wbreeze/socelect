@@ -17,9 +17,23 @@ class Choice < ApplicationRecord
 
   has_many :preferences, :dependent=>:destroy
 
+  enum result_state: [
+    :computed, :dirty,
+    :computing, :computing_dirty
+  ], _prefix: :result
+  before_create :initialize_result_state
+
   def valid_alternative_count
    if alternatives.size < 2
      errors.add(:alternatives, "requires at least two alternatives")
    end
+  end
+
+  def initialize_result_state
+    self.result_state = "computed"
+  end
+
+  def result_parto
+    super || alternatives.collect(&:id).to_json
   end
 end
