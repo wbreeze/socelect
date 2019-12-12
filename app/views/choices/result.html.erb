@@ -15,7 +15,10 @@
   <% else %>
     This choice closed to further responses
   <% end %>
-  <%= datetime_full_display(@choice.deadline) %>
+  <%= datetime_full_display(@choice.deadline) %>.
+  <% unless @choice.result_computed? %>
+    Computation in progress.
+  <% end %>
 </p>
 
 <% if deadline <= now || @choice.intermediate %>

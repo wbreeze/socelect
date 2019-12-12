@@ -48,8 +48,7 @@ class ChoicesController < ApplicationController
     @choice = Choice.find_by(read_token: params[:id])
     return head :not_found unless @choice
     @choice.extend(Choice::PartoCoding)
-    davenport_computer = DavenportComputer.new(@choice)
-    @parto = davenport_computer.result_as_parto
+    @parto = @choice.result_parto
   end
 
   # GET /choices/:id/wrap

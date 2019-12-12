@@ -43,4 +43,11 @@ class Choice::ResultTest < ActionDispatch::IntegrationTest
       assert_match(datetime_full_display(@choice.deadline), @response.body)
     end
   end
+
+  test 'displays pending computation when computing state' do
+    @choice.save! # hit before_create callback
+    @choice.result_state = "computing"
+    get_results_page
+    assert_select('p', /Computation in progress/)
+  end
 end
