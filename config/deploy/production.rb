@@ -39,6 +39,11 @@ server fetch(:target_server),
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
+set :delayed_job_pools, {
+  :result_state => 1,
+  :result_compute => 2
+}
+
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a

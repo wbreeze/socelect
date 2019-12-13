@@ -19,6 +19,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
+  gem 'capistrano3-delayed-job'
 end
 
 group :test do
