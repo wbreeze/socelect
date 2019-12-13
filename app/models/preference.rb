@@ -4,6 +4,7 @@ class Preference < ApplicationRecord
 
   belongs_to :choice
   has_many :expressions
+  after_save { |p| ResultState::NewPrefJob.perform_later(p.choice) }
 
   token_column(:token, TOKEN_LENGTH)
 
