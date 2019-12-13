@@ -5,7 +5,7 @@ class ResultState::NewPrefJob < ApplicationJob
   def perform(choice)
     case
     when choice.result_computed?
-      # queue computation job. regardless of successful
+      ResultState::ComputeJob.perform_later(choice)
       choice.result_dirty!
       choice.save!
     when choice.result_computing?

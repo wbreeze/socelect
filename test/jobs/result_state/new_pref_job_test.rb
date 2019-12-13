@@ -32,4 +32,12 @@ class ResultState::NewPrefJobTest < ActiveJob::TestCase
     ResultState::NewPrefJob.perform_now(@choice)
     assert(@choice.result_computing_dirty?)
   end
+
+  test 'queues computation job' do
+    assert_enqueued_with(
+      job: ResultState::ComputeJob, queue: 'result_compute'
+    ) do
+      ResultState::NewPrefJob.perform_now(@choice)
+    end
+  end
 end
