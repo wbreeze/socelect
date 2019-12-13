@@ -14,7 +14,8 @@ class ResultState::ComputeJob < ApplicationJob
     if do_compute
       clazz = Object.const_get(computation_class_name)
       computer = clazz.new(choice)
-      parto = computer.result_as_parto if do_compute
+      parto = computer.result_as_parto
+      ResultState::HaveResultJob.perform_later(choice, parto)
     end
   end
 end

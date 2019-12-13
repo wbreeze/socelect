@@ -73,6 +73,12 @@ class ResultState::ComputeJobTest < ActiveJob::TestCase
   end
 
   test 'Queues computed_result job' do
-    skip 'Need computer result job'
+    skip "Why does perform_later not queue in the compute_job?"
+    assert_enqueued_with(
+      job: ResultState::HaveResultJob, queue: 'result_state'
+    ) do
+      ResultState::ComputeJob.perform_now(@choice,
+        'ResultState::ComputeJobTest::MockComputer')
+    end
   end
 end
