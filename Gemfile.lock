@@ -198,6 +198,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-delayed-job
   capybara
+  daemons
   davenport
   delayed_job_active_record
   faker

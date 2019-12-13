@@ -5,6 +5,7 @@ gem 'bootsnap'
 gem 'davenport'
 gem 'active_type'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :assets do
   gem 'uglifier'
