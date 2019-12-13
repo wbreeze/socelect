@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class ResultState::NewPrefJobTest < ActiveJob::TestCase
-  test "the truth" do
-    assert true
-  end
-
   def setup
     @choice = create_full_choice
     @choice.save!

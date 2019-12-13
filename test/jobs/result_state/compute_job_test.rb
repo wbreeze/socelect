@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class ResultState::ComputeJobTest < ActiveJob::TestCase
-  test "the truth" do
-    assert true
-  end
-
   class MockComputer
     attr_reader :choice
     cattr_reader :called, :returned, :state_at_call
