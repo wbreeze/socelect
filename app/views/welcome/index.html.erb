@@ -3,24 +3,12 @@
   { :controller => :choices, :action => :new },
   :method => :get
 %>
-<p>What is this?  It's a place where you can present a choice and find out
-what people prefer.</p>
+<p>What is this? It is a place where you can find out
+what people prefer. Any choice you can think of.
+You can find people's preferences here.</p>
 
-<p>Just about any choice you can think of that has two or more
-alternatives-- you can find people's preferences here.</p>
-
-<p>The method used here to gather preferences and combine them into
-a result is unique.
-Preferences expressed here gain full information about which alternatives
-are preferred over others by allowing you to order them most to least.
-This is unlike choose-one or check the acceptable ones.</p>
-
-<p>The result computation guarantees that every
-alternative placed before another
-is preferred over the other by the majority.
-This is an expectation that many people
-assume from any method, but which most methods, including choose-one,
-do not deliver.</p>
+<p>Your invited express their preference by ranked choice.
+The result is the ranking with maximum agreement.</p>
 
 <% if 0 < @choices.count %>
   <p>Some publicly shared choices that you can try out:</p>
