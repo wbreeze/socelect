@@ -3,7 +3,7 @@ module PreferenceHelper
     host = attribs.fetch(:host, nil) || Faker::Internet.domain_name
     ip = attribs.fetch(:ip, nil) || Faker::Internet.ip_v4_address
     chef = attribs.fetch(:chef, nil) ||
-      Faker::String.random(Preference::TOKEN_LENGTH)
+      Faker::String.random(length: Preference::TOKEN_LENGTH)
     preference = Preference.new(choice: choice)
     preference.set_chef_parameters(host, ip, chef)
     preference.save!
