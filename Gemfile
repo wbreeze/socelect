@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>5.2.0'
+gem 'rails', '~>5.2.4'
 gem 'bootsnap'
 gem 'davenport'
 gem 'active_type'
