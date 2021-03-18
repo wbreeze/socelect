@@ -27,5 +27,8 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "parcel-bundler": "^1.12.3"
+  },
+  "resolutions": {
+    "node-forge": "^0.10.0"
   }
 }
