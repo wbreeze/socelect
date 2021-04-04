@@ -29,6 +29,7 @@
     "parcel-bundler": "^1.12.3"
   },
   "resolutions": {
-    "node-forge": "^0.10.0"
+    "node-forge": "^0.10.0",
+    "is-svg": "~> 4.2.2"
   }
 }
