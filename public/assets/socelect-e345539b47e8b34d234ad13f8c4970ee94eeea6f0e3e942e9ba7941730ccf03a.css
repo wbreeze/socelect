@@ -1,0 +1,181 @@
+body { 
+  background: url(/assets/Color-60f32e39399f6941c04405100202420123a4f81fe7407ba0886b1dc4d55d42d0.jpg) no-repeat scroll right top #6390b9;
+  color: #333;
+  margin:0px;
+  padding:0px;
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   12pt;
+  line-height: 2ex;
+}
+
+h1, h2, h3 {
+  line-height: normal;
+}
+
+div#title {
+   background: url(/assets/Checks-59ae06286f4f96aa6c61613eab97b74d7dbd7036cadc6b86da5f74db09fca83a.png) no-repeat scroll right top #5fa4cf;
+   border-bottom: 4pt solid white;
+   color:black;
+}
+
+div#title a:hover {
+  background-color: inherit;
+}
+
+div#title img {
+   display:inline;
+   vertical-align:middle;
+   margin-left: 10px;
+   margin-right: 20px;
+}
+
+div#title h1 {
+   display:inline;
+   vertical-align:middle;
+}
+
+@media screen and (max-width: 400px) {
+  div#title h1 {
+    display: none;
+  }
+}
+
+div.content {
+   background: white;
+   padding-top: 1px;
+   padding-left: 15px;
+   padding-right: 20px;
+   padding-bottom:40px;
+   margin-right: 10%;
+   max-width: 800px;
+}
+
+@media screen and (max-width: 600px) {
+  div.content {
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-right: 5%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  div.content {
+    margin-right: 0px;
+  }
+}
+
+div#foot li {
+  line-height: 3.0ex;
+}
+
+.choiceTitle,
+.alternativeTitle,
+div.field:first-child input,
+div.alternative div.field:first-child input {
+  font-weight:bold;
+}
+
+.alternativeTitle
+{
+  padding-top: 4pt;
+}
+
+.choiceDescription,
+.alternativeDescription {
+  font-style:italic;
+}
+
+div.choiceDescription,
+div.alternativeDescription {
+  margin-left: 2em;
+}
+
+div.alternatives,
+div#alternatives {
+  margin-top: 6pt;
+  margin-bottom: 8pt;
+}
+
+table.alternatives td {
+  text-align:right;
+  padding-right:6pt;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+div.actions {
+  margin-top: 10px;
+}
+
+div.actions div {
+  display:inline;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+input[type="submit"],
+a.displayLink {
+  display:inline-block;
+  padding: 4pt;
+  padding-bottom: 6pt;
+  border: 2pt solid black;
+  border-radius: 10px;
+  margin-top: 2pt;
+  margin-bottom: 9pt;
+  font-variant: small-caps;
+  text-decoration: none;
+  color: black;
+  background-color: #9ac4e0;
+}
+
+a.displayLink:hover {
+  background-color: #6390b9;
+}
+
+div.para {
+  margin-top: 1.5ex;
+  margin-bottom: 1ex;
+}
+

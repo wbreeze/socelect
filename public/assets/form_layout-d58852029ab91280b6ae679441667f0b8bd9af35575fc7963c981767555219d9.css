@@ -1,0 +1,47 @@
+.data-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.field {
+  display:inline-block;
+  flex-grow: 1;
+  min-width: 12em;
+  margin-right:20px;
+}
+
+.field:last-of-type {
+  margin-right: 0pt;
+}
+
+.alternative .field:last-of-type {
+  min-width: auto;
+  flex-grow: unset;
+}
+
+.field textarea,
+.field input {
+  width: 100%;
+  font-size: 20pt;
+}
+
+div.field * {
+  display:block;
+}
+
+form div.alternative {
+  border-bottom: 2pt solid black;
+  margin-bottom: 2ex;
+}
+
+form div.alterative:last-of-type {
+  border-bottom-style: none;
+  margin-bottom: 0pt;
+}
+
+div.choiceBox {
+  margin-top:1.5ex;
+  padding-bottom: 6pt;
+  border-bottom: 2pt solid black;
+}
