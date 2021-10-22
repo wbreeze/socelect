@@ -1,6 +1,6 @@
 {
   "name": "socelect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript package for socelect",
   "browserslist": "> 0.2% or last 1 version and not dead",
   "repository": "git@github.com:wbreeze/socelect.git",
@@ -13,7 +13,7 @@
     "watch": "yarn run clean && parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
   },
   "dependencies": {
-    "core-js": "3",
+    "core-js": "^3",
     "poui": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
