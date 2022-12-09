@@ -18,16 +18,12 @@
     "core-js": "^3",
     "poui": "^1.0.4",
     "prop-types": "^15.7.2",
+    "@swc/helpers": "^0.4.14",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-simple-timefield": "^2.0.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.0.0-0",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
     "parcel": "^2.8.1",
     "process": "^0.11.10"
   },
