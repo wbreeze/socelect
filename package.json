@@ -5,12 +5,14 @@
   "browserslist": "> 0.2% or last 1 version and not dead",
   "repository": "git@github.com:wbreeze/socelect.git",
   "author": "Douglas Lovell <doug@wbreeze.com>",
+  "source": "src/index.js",
+  "main": "dist/main.js",
   "license": "GPL-3.0",
   "scripts": {
     "clean": "rm -rf app/assets/javascripts/parceled",
-    "build": "yarn run clean && NODE_ENV='production' parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-source-maps --no-content-hash",
+    "build": "npm run clean && NODE_ENV='production' parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-source-maps --no-content-hash",
     "serve": "parcel src/index.html",
-    "watch": "yarn run clean && parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
+    "watch": "npm run clean && parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
   },
   "dependencies": {
     "core-js": "^3",
@@ -26,7 +28,8 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "parcel-bundler": "^1.12.3"
+    "parcel": "^2.8.1",
+    "process": "^0.11.10"
   },
   "resolutions": {
     "node-forge": "^0.10.0",
