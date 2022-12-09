@@ -7,6 +7,7 @@ node_modules/
 .cache/
 yarn-error.log
 dist
+.parcel-cache
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
