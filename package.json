@@ -9,10 +9,11 @@
   "main": "dist/main.js",
   "license": "GPL-3.0",
   "scripts": {
-    "clean": "rm -rf app/assets/javascripts/parceled",
-    "build": "npm run clean && NODE_ENV='production' parcel build src/index.js --out-dir app/assets/javascripts/parceled --no-source-maps --no-content-hash",
-    "serve": "parcel src/index.html",
-    "watch": "npm run clean && parcel watch src/index.js --out-dir app/assets/javascripts/parceled"
+    "init" : "[ -d dist ] || mkdir dist; [ -d app/assets/javascripts/parceled ] || mkdir app/assets/javascripts/parceled",
+    "clean": "npm run init && rm -rf dist/ app/assets/javascripts/parceled/",
+    "build": "npm run clean && NODE_ENV='production' parcel build src/index.js --no-source-maps --no-content-hash && cp dist/main.js app/assets/javascripts/parceled/",
+    "serve": "parcel serve src/index.html",
+    "watch": "npm run clean && parcel watch src/index.js"
   },
   "dependencies": {
     "core-js": "^3",
