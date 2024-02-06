@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # for compatibility with ruby 2.6
-gem 'nokogiri', '~>1.13.10'
+gem 'nokogiri', '~>1.16.2'
 
 gem 'rails', '~>5.2.8'
 gem 'bootsnap'
