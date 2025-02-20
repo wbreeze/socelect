@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>7.0.0'
+gem 'rails', '~>7.l.0'
 gem 'davenport'
 gem 'active_type'
 gem 'delayed_job_active_record'

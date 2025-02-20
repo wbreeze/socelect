@@ -11,6 +11,11 @@ module Socelect
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w[assets tasks])
+
     # content security policy; preferred over the DSL
     config.action_dispatch.default_headers['X-Content-Security_Policy'] =
       <<~POLICY.gsub("\n", "\s")
