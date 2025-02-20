@@ -7,12 +7,17 @@ abandoned, and picked-up again at the end of May, 2019.
 
 ## Development
 
+- You will need mySQL.
+  - On MacOS with Homebrew, `brew install mysql`
+  - run it with `/opt/homebrew/opt/mysql/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql`
+- You will need to have the Davenport library installed.
+  - See https://github.com/wbreeze/davenport
 - Check out the repository: `git checkout git@github.com:wbreeze/socelect.git`
 - Change to the repository directory: `cd socelect`
 - Install the Ruby programming environment at the level indicated in the
   file, `.ruby-version`. One way is to use
   [the Ruby environment manager (rbenv)][rbenv].
-- Run the setup script: `script/setup`
+- Run `bundle install`
 - Start the Rails server for development: `rails server --environment=development`
 - Visit the [locally hosted development site][rdev] to try the app locally
 
