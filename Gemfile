@@ -1,14 +1,16 @@
 source 'https://rubygems.org'
 
-# for compatibility with ruby 2.6
-gem 'nokogiri', '~>1.16.2'
-
-gem 'rails', '~>5.2.8'
-gem 'bootsnap'
+gem 'rails', '~>7.0.0'
 gem 'davenport'
 gem 'active_type'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'webpacker'
+
+gem 'bootsnap'
+gem 'bigdecimal'
+gem 'mutex_m'
+gem 'drb'
 
 group :assets do
   gem 'uglifier'
@@ -34,7 +36,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :production do
