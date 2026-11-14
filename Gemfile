@@ -36,7 +36,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'sqlite3', '~> 2.9'
+  gem 'sqlite3', '~> 2.10'
 end
 
 group :production do

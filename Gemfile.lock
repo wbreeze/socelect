@@ -254,7 +254,7 @@ GEM
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
     semantic_range (3.1.0)
-    sqlite3 (2.9.5)
+    sqlite3 (2.10.2)
       mini_portile2 (~> 2.8.0)
     sshkit (1.24.0)
       base64
@@ -311,7 +311,7 @@ DEPENDENCIES
   mysql2
   rails (~> 7.l.0)
   selenium-webdriver
-  sqlite3 (~> 2.9)
+  sqlite3 (~> 2.10)
   uglifier
   webpacker
 
